@@ -1,0 +1,439 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- @author Terrence Takunda Munyunguma: ttmunyunguma@gmail.com -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<head id="j_idt2">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/theme.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/fa/font-awesome.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/components.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/inputswitch/inputswitch.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/nanoscroller.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/charts/charts.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/schedule/schedule.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/layout.css' %}"/>
+
+    <style type="text/css">
+        .jqplot-xaxis-label {
+            color: #9fadb7;
+            display: none;
+        }
+
+        .jqplot-yaxis-label {
+            color: #9fadb7;
+        }
+    </style>
+
+    <script type="text/javascript" src="{% static 'resource/js/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/components.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/inputswitch/inputswitch.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/jquery/jquery-plugins.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/knob/knob.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/charts/charts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/moment/moment.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/schedule/schedule.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/nanoscroller.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/layout.js' %}"></script>
+
+    <script type="text/javascript">if (window.PrimeFaces) {
+        PrimeFaces.settings.locale = 'en_US';
+    }
+    </script>
+    <script type="text/javascript">
+        //<![CDATA[
+        function skinChart() {
+            this.cfg.animate = true;
+            this.cfg.shadow = false;
+            this.cfg.title = '';
+            this.cfg.seriesColors = ['#4CAF50', '#39a3f4'];
+            this.cfg.grid = {
+                background: 'transparent',
+                borderColor: 'transparent',
+                gridLineColor: '#dddddd',
+                shadow: false,
+            };
+            this.cfg.axesDefaults = {
+                rendererOptions: {
+                    textColor: '#9fadb7'
+                },
+                tickOptions: {
+                    textColor: '#9fadb7'
+                }
+            };
+            this.cfg.seriesDefaults = {
+                shadow: false,
+                lineWidth: 1,
+                markerOptions: {
+                    shadow: false,
+                    size: 7,
+                    style: 'circle'
+                }
+            }
+            this.cfg.legend = {
+                show: false
+            }
+        }
+
+        setInterval(function () {
+            setAnimation(PF('knob1'));
+            setAnimation(PF('knob2'));
+            setAnimation(PF('knob3'));
+            setAnimation(PF('knob4'));
+            PF('pb1').setValue(generateRandomNumber());
+            PF('pb2').setValue(generateRandomNumber());
+            PF('pb3').setValue(generateRandomNumber());
+        }, 2000);
+
+        function setAnimation(widget) {
+            widget.jq.animate({value: generateRandomNumber()}, {
+                duration: 1000,
+                easing: 'linear',
+                progress: function () {
+                    widget.setValue(Math.floor(this.value));
+                }
+            });
+        }
+
+        function generateRandomNumber() {
+            return Math.floor(Math.random() * 100) + 1;
+        }
+
+        //]]>
+    </script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+<div class="layout-wrapper layout-horizontal">
+
+    <div class="topbar clearfix">
+        <img id="j_idt13" src="#" alt="eKPM" class="logo"/>
+
+        <a id="menu-button" href="#">
+            <i class="fa fa-align-left"></i>
+        </a>
+
+        <a href="#" class="profile">
+            <span class="username">Terrence</span>
+            <img id="j_idt15" src="{% static 'resource/images/pp.png' %}" alt="..."/>
+            <i class="fa fa-angle-down"></i>
+        </a>
+
+        <span class="topbar-search">
+            <input type="text" placeholder="Search..."/>
+            <span class="fa fa-search"></span>
+        </span>
+
+        <ul class="topbar-menu fadeInDown">
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-user"></i>
+                    <span class="topbar-item-name">Profile</span>
+                </a>
+                <ul>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-sign-out"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-cog"></i>
+                    <span class="topbar-item-name">Settings</span>
+                </a>
+                <ul>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-star-o"></i>
+                            <span>Favorites</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-envelope-o"></i>
+                    <span class="topbar-item-name">Messages</span>
+                    <span class="topbar-badge">5</span>
+                </a>
+            </li>
+            {# for mobile view #}
+            <li class="topbar-search-item">
+                <span class="topbar-search">
+                    <input type="text" placeholder="Search..."/>
+                    <span class="fa fa-search"></span>
+                </span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="layout-menu-container">
+        <div class="nano">
+            <div class="nano-content menu-scroll-content">
+                <div class="layout-menu-title">PORTAL</div>
+                    <ul id="menuform:j_idt31" class="layout-menu">
+                        <li id="menuform:apl_dashboard" role="menuitem"><a href="{% url 'manager:portal' %}"><i
+                                class="fa fa-dashboard fa-fw"></i><span>Portal</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Portal</div>
+                            </div>
+                        </li>
+                        <li id="menuform:apl_menus" role="menuitem"><a href="#"><i class="fa fa-bars fa-fw"></i><span>File</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">File</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_hmenu" role="menuitem">
+                                    <a href="#" ><i
+                                        class="fa fa-window-restore fa-fw"></i><span>New</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">New</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_dark" role="menuitem"><a href="#"><i class="fa fa-circle fa-fw"></i><span>Processes</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i><span class="menuitem-badge">3</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Processes</div>
+                            </div>
+                            <ul role="menu">
+
+                            </ul>
+                        </li>
+
+                        <li id="menuform:apl_light" role="menuitem"><a href="#"><i
+                                class="fa fa-circle-o fa-fw"></i><span>Finance</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i><span class="menuitem-badge">5</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Finance</div>
+                            </div>
+                            <ul role="menu">
+
+                            </ul>
+                        </li>
+
+                        <li id="menuform:apl_components" role="menuitem"><a href="#"><i class="fa fa-sitemap fa-fw"></i><span>Facilities</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Facilities</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_sample" role="menuitem"><a href="#"><i
+                                        class="fa fa-columns fa-fw"></i><span>Properties</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Properties</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_forms" role="menuitem"><a href="#"><i
+                                        class="fa fa-code fa-fw"></i><span>Units</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Units</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li id="menuform:apl_default" role="menuitem"><a href="#"><i class="fa fa-life-saver fa-fw"></i>
+                            <span>CRM</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">CRM</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_empty" role="menuitem"><a href="#"><i
+                                        class="fa fa-square-o fa-fw"></i><span>eKCRM</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">eKCRM</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_hierarchy" role="menuitem"><a href="#"><i class="fa fa-gg fa-fw"></i>
+                            <span>Reports</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Reports</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_sm1" role="menuitem"><a href="#"><i
+                                        class="fa fa-sign-in fa-fw"></i><span>Tenant Reports</span><i
+                                        class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Tenant</div>
+                                    </div>
+                                    <ul role="menu">
+                                        <li id="menuform:apl_sm11" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Tenancy Schedules</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                                <div class="layout-menu-tooltip-text">Schedules</div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk111" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Schedule 1</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Schedule 1</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li id="menuform:apl_sm12" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Retention &amp; Letting</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                                <div class="layout-menu-tooltip-text">Retention Letting</div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk121" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="menuform:apl_sm2" role="menuitem"><a href="#"><i
+                                        class="fa fa-sign-in fa-fw"></i><span>Tax Reports</span><i
+                                        class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Tax Reports</div>
+                                    </div>
+                                    <ul role="menu">
+                                        <li id="menuform:apl_sm21" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Taxation 1</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk211" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li id="menuform:apl_sm22" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Taxation 2</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk221" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_doc" role="menuitem"><a href="#"><i
+                                class="fa fa-book fa-fw"></i><span>Administration</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                            </div>
+                        </li>
+                        <li id="menuform:apl_buy" role="menuitem"><a href="#"><i
+                                class="fa fa-question fa-fw"></i><span>Help</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                            </div>
+                        </li>
+                    </ul>
+                    <script id="menuform:j_idt31_s"
+                            type="text/javascript">PrimeFaces.cw("Apollo", "widget_menuform_j_idt31", {id: "menuform:j_idt31"});</script>
+
+                <div class="nano-scroll-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-content">
+        <div class="layout-breadcrumb">
+            <ul>
+                <li><a href="{% url 'manager:portal' %}" class="ui-link ui-widget"><i class="fa fa-home"></i></a></li>
+                <li>/</li>
+            </ul>
+
+            <div class="layout-breadcrumb-options">
+                <a href="#" title="Backup">
+                    <i class="fa fa-cloud-upload"></i>
+                </a><a href="#" title="Bookmark">
+                <i class="fa fa-bookmark"></i>
+            </a><a href="#" title="Logout">
+                <i class="fa fa-sign-out"></i>
+            </a>
+            </div>
+        </div>
+
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+    <div class="layout-footer">
+        <div class="clearfix">
+            <span class="footer-text-left">Cuius Inc.</span>
+            <span class="footer-text-right">
+                Copyright &copy;  <script>document.write(new Date().getFullYear().toString())</script>
+                All Rights Reserved</span>
+        </div>
+    </div>
+
+    <div class="layout-mask"></div>
+</div>
+<div id="j_idt187" style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+    <div id="j_idt187_start" style="display:none">
+        <i class="ajax-status-icon fa fa-spinner fa-spin"></i></div>
+    <div id="j_idt187_complete" style="display:none"></div>
+</div>
+<script id="j_idt187_s" type="text/javascript">$(function () {
+    PrimeFaces.cw("AjaxStatus", "widget_j_idt187", {id: "j_idt187"});
+});</script>
+</body>
+
+</html>

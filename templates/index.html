@@ -1,0 +1,210 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<head id="j_idt2">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <link type="text/css" rel="stylesheet"
+          href="{% static 'resource/css/theme.css' %}"/>
+    <link type="text/css" rel="stylesheet"
+          href="{% static 'resource/css/fa/font-awesome.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/components.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/layout.css' %}"/>
+
+    <title>eKhaya Property Manager</title>
+
+</head>
+<body class="landing-body">
+
+<div class="landing-wrapper">
+    <div class="landing-header">
+        <div class="landing-header-content clearfix">
+            <img id="j_idt7" src="" alt="eKPM_logo"/>
+
+            <a id="menu-button" href="#">
+                <span class="fa fa-bars"></span>
+            </a>
+            <ul id="menu">
+                <li><a href="{% url 'landing_page' %}"><i class="menu-icon fa fa-home"></i>Home</a></li>
+                <li><a href="{% url 'manager:portal' %}"><i class="menu-icon fa fa-home"></i>Portal</a></li>
+                <li><a href="#introduction"><i class="menu-icon fa fa-certificate"></i>Introduction</a></li>
+                <li><a href="#landing-feature"><i class="menu-icon fa fa-sitemap"></i>Features</a></li>
+                <li><a href="#pricing"><i class="menu-icon fa fa-usd"></i>Pricing</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="introduction" style="background-image: url(/static/resource/images/bg/01.jpg);">
+        <div class="introduction-content">
+            <p class="title">Cuius Incorporated Presents eKPM</p>
+            <p class="subtitle">
+                A robust and Scalable Property Management Platform for Property Managers
+            </p>
+            <button id="j_idt9" name="j_idt9"
+                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button"><span
+                    class="ui-button-text ui-c">Log In</span></button>
+
+        </div>
+    </div>
+
+    <div id="landing-feature">
+        <div class="landing-container">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-6 ui-lg-3 centerText">
+                    <i class="fa fa-cube fa-feature" aria-hidden="true"></i>
+                    <h2>Creative</h2>
+                    <p>
+                        Vitae potenti ante praesent <br/>
+                        a dui eget nibh eu quam <br/>
+                        accumsan porttitor tincidunt
+                    </p>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-3 centerText">
+                    <i class="fa fa-leaf fa-feature" aria-hidden="true"></i>
+                    <h2>Responsive</h2>
+                    <p>
+                        Vitae potenti ante praesent <br/>
+                        a dui eget nibh eu quam <br/>
+                        accumsan porttitor tincidunt
+                    </p>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-3 centerText">
+                    <i class="fa fa-magic fa-feature" aria-hidden="true"></i>
+                    <h2>Cross Browser</h2>
+                    <p>
+                        Vitae potenti ante praesent <br/>
+                        a dui eget nibh eu quam <br/>
+                        accumsan porttitor tincidunt
+                    </p>
+                </div>
+                <div class="ui-g-12 ui-md-6 ui-lg-3 centerText">
+                    <i class="fa fa-sitemap fa-feature" aria-hidden="true"></i>
+                    <h2>Well Organized</h2>
+                    <p>
+                        Vitae potenti ante praesent <br/>
+                        a dui eget nibh eu quam <br/>
+                        accumsan porttitor tincidunt
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="pricing">
+        <div class="pricing-content">
+            <span class="pricing-title">Pricing</span>
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium
+                doloremque laudantium, totam rem aperiam.</p>
+
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-4">
+                    <div class="pricing-basic pricing-box">
+                        <span class="pricing-name">Basic</span>
+                        <div class="pricing-fee">1$</div>
+
+                        <p>50GB Disk Space</p>
+                        <p>500GB Monthly Bandwith</p>
+                        <p>20 Email Accounts</p>
+                        <p>5 Subdomain</p>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-4">
+                    <div class="pricing-standard pricing-box">
+                        <span class="pricing-name">Standard</span>
+                        <div class="pricing-fee">5$</div>
+
+                        <p>200GB Disk Space</p>
+                        <p>1TB Monthly Bandwith</p>
+                        <p>50 Email Accounts</p>
+                        <p>10 Subdomain</p>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 ui-md-4">
+                    <div class="pricing-professional pricing-box">
+                        <span class="pricing-name">Professional</span>
+                        <div class="pricing-fee">10$</div>
+
+                        <p>2TB Disk Space</p>
+                        <p>10TB Monthly Bandwith</p>
+                        <p>Unlimited Email Accounts</p>
+                        <p>50 Subdomain</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="landing-footer">
+        <div class="landing-footer-content">
+            <div class="footer-top">
+                <div class="ui-g">
+                    <div class="ui-g-12">
+                        <img id="j_idt17" src="" alt="eKPM_logo" class="footer-logo"/>
+                    </div>
+                    <p>Powered By Cuius Inc.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script type="text/javascript"
+        src="{% static 'resource/js/jquery/jquery-plugins.js' %}"></script>
+<script type="text/javascript" src="{% static 'resource/js/core.js' %}"></script>
+<script type="text/javascript" src="{% static 'resource/js/components.js' %}"></script>
+
+<script type="text/javascript">if (window.PrimeFaces) {
+    PrimeFaces.settings.locale = 'en_US';
+}
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#menu-button').on('click', function (e) {
+            $('#menu').toggleClass('overlay-menu');
+            e.preventDefault();
+        });
+    });
+</script>
+<script>
+    var $this = this;
+    this.landingNav = $('#landing-nav');
+    this.landingMenuButton = $('#landing-menubar-button');
+
+    this.landingMenuButton.on('click', function (e) {
+        $this.toggleMenu();
+        e.preventDefault();
+    });
+
+    function toggleMenu() {
+        if (this.landingNav.hasClass('landing-mobile-menu'))
+            this.landingNav.removeClass('landing-mobile-menu');
+        else
+            $this.landingNav.addClass('landing-mobile-menu');
+    }
+
+    /* Scroll Animate */
+    $('a[href*="#"]').click(function (event) {
+        $this.toggleMenu(); // When scrolling close the menu.
+
+        var target = $(this.hash);
+        var top = target.length ? target.offset().top - 80 : 0;
+
+        $('html, body').animate({
+            scrollTop: top
+        }, 500);
+
+        event.preventDefault();
+    });
+</script>
+</body>
+</html>

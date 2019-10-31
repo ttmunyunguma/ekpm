@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    eKPM Portal
+{% endblock %}
+
+{% block content %}
+    <div class="layout-content-container">
+        <div class="ui-g dashboard">
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-1">
+                    <h1>REVENUE</h1>
+                    <div class="overview-value">$25,620</div>
+                    <div class="overview-ratio">
+                        <div class="overview-direction">
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                        <div class="overview-ratio-value">
+                            51%
+                        </div>
+                    </div>
+                    <img id="j_idt44" src="{% static 'resource/images/dashboard/graph-blue.svg' %}" alt=""/>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-2">
+                    <h1>TENANTS</h1>
+                    <div class="overview-value">9521</div>
+                    <div class="overview-ratio">
+                        <div class="overview-direction">
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                        <div class="overview-ratio-value">
+                            36%
+                        </div>
+                    </div>
+                    <img id="j_idt46" src="{% static 'resource/images/dashboard/graph-green.svg' %}" alt=""/>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-3">
+                    <h1>PORTFOLIOS</h1>
+                    <div class="overview-value">452</div>
+                    <div class="overview-ratio">
+                        <div class="overview-direction">
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                        <div class="overview-ratio-value">
+                            19%
+                        </div>
+                    </div>
+                    <img id="j_idt48" src="{% static 'resource/images/dashboard/graph-yellow.svg' %}" alt=""/>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-3">
+                <div class="overview-box overview-box-4">
+                    <h1>MARKET SHARE</h1>
+                    <div class="overview-value">65922</div>
+                    <div class="overview-ratio">
+                        <div class="overview-direction">
+                            <i class="fa fa-arrow-up"></i>
+                        </div>
+                        <div class="overview-ratio-value">
+                            25%
+                        </div>
+                    </div>
+                    <img id="j_idt50" src="{% static 'resource/images/dashboard/graph-red.svg' %}" alt=""/>
+                </div>
+            </div>
+
+            <div class="ui-g-12">
+                <div id="j_idt52" class="ui-panel ui-widget ui-widget-content ui-corner-all knobs"
+                     data-widget="widget_j_idt52">
+                    <div id="j_idt52_header"
+                         class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span
+                            class="ui-panel-title">Statistics</span></div>
+                    <div id="j_idt52_content" class="ui-panel-content ui-widget-content">
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-lg-3 ui-md-6 knob-users">
+                                <div class="knob-title">Land Lords</div>
+                                <input id="j_idt54" name="j_idt54" disabled="disabled" value="25" data-min="0"
+                                       data-step="1" data-max="100" data-displayInput="true" data-readOnly="false"
+                                       data-cursor="false" data-linecap="butt" data-thickness="0.1" data-width="150"
+                                       data-height="150" class="knob"/><input id="j_idt54_hidden"
+                                                                              name="j_idt54_hidden" type="hidden"
+                                                                              value="25"/>
+                                <script id="j_idt54_s" type="text/javascript">$(function () {
+                                    PrimeFaces.cw("Knob", "knob1", {
+                                        id: "j_idt54",
+                                        labelTemplate: "{value}",
+                                        fgColor: "#6ebc3b",
+                                        bgColor: "rgba(0,0,0,.3)"
+                                    });
+                                });</script>
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="ui-g-12 ui-lg-3 ui-md-6 knob-mobile">
+                                <div class="knob-title">Tenants</div>
+                                <input id="j_idt56" name="j_idt56" disabled="disabled" value="57" data-min="0"
+                                       data-step="1" data-max="100" data-displayInput="true" data-readOnly="false"
+                                       data-cursor="false" data-linecap="butt" data-thickness="0.1" data-width="150"
+                                       data-height="150" class="knob"/><input id="j_idt56_hidden"
+                                                                              name="j_idt56_hidden" type="hidden"
+                                                                              value="57"/>
+                                <script id="j_idt56_s" type="text/javascript">$(function () {
+                                    PrimeFaces.cw("Knob", "knob2", {
+                                        id: "j_idt56",
+                                        labelTemplate: "{value}",
+                                        fgColor: "#f6a821",
+                                        bgColor: "rgba(0,0,0,.3)"
+                                    });
+                                });</script>
+                                <i class="fa fa-mobile"></i>
+                            </div>
+                            <div class="ui-g-12 ui-lg-3 ui-md-6 knob-pageviews">
+                                <div class="knob-title">Managers</div>
+                                <input id="j_idt58" name="j_idt58" disabled="disabled" value="85" data-min="0"
+                                       data-step="1" data-max="100" data-displayInput="true" data-readOnly="false"
+                                       data-cursor="false" data-linecap="butt" data-thickness="0.1" data-width="150"
+                                       data-height="150" class="knob"/><input id="j_idt58_hidden"
+                                                                              name="j_idt58_hidden" type="hidden"
+                                                                              value="85"/>
+                                <script id="j_idt58_s" type="text/javascript">$(function () {
+                                    PrimeFaces.cw("Knob", "knob3", {
+                                        id: "j_idt58",
+                                        labelTemplate: "{value}",
+                                        fgColor: "#039ADE",
+                                        bgColor: "rgba(0,0,0,.3)"
+                                    });
+                                });</script>
+                                <i class="fa fa-eye"></i>
+                            </div>
+                            <div class="ui-g-12 ui-lg-3 ui-md-6 knob-sales">
+                                <div class="knob-title" style="color:#d66351">ROI</div>
+                                <input id="j_idt60" name="j_idt60" disabled="disabled" value="44" data-min="0"
+                                       data-step="1" data-max="100" data-displayInput="true" data-readOnly="false"
+                                       data-cursor="false" data-linecap="butt" data-thickness="0.1" data-width="150"
+                                       data-height="150" class="knob"/><input id="j_idt60_hidden"
+                                                                              name="j_idt60_hidden" type="hidden"
+                                                                              value="44"/>
+                                <script id="j_idt60_s" type="text/javascript">$(function () {
+                                    PrimeFaces.cw("Knob", "knob4", {
+                                        id: "j_idt60",
+                                        labelTemplate: "{value}",
+                                        fgColor: "#d66351",
+                                        bgColor: "rgba(0,0,0,.3)"
+                                    });
+                                });</script>
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script id="j_idt52_s"
+                        type="text/javascript">PrimeFaces.cw("Panel", "widget_j_idt52", {id: "j_idt52"});</script>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+

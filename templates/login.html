@@ -1,0 +1,75 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- @author Terrence Takunda Munyunguma: ttmunyunguma@gmail.com -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+<head id="j_idt2">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/theme.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/fa/font-awesome.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/components.css' %}"/>
+    <link type="text/css" rel="stylesheet" href="{% static 'resource/css/layout.css' %}"/>
+
+    <script type="text/javascript" src="{% static 'resource/js/jquery/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/jquery/jquery-plugins.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/core.js' %}"></script>
+    <script type="text/javascript" src="{% static 'resource/js/components.js' %}"></script>
+
+    <script type="text/javascript">if (window.PrimeFaces) {
+        PrimeFaces.settings.locale = 'en_US';
+    }
+    </script>
+
+    <title>eKPM Authenticate</title></head>
+<body class="login-body" style="background-image: url(/static/resource/images/map.png);">
+<div class="body-container">
+    <div class="ui-g">
+        <div class="ui-g-12 ui-lg-6 left-side">
+            <a href="{% url 'landing_page' %}"><img id="j_idt7" src="#" alt="eKPM_logo" class="logo"/></a>
+            <h1>Welcome</h1>
+            <p>
+                Sign in to start your session
+            </p>
+        </div>
+        <div class="ui-g-12 ui-lg-6 right-side">
+            <div class="login-wrapper">
+                <div class="login-container">
+                    <span class="title">Login</span>
+                    {% comment %}<div class="ui-g-12"><input id="j_idt9" name="j_idt9" type="text" autocomplete="off"
+                                                    placeholder="Username"
+                                                    class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all"/>
+                            <script id="j_idt9_s"
+                                    type="text/javascript">PrimeFaces.cw("InputText", "widget_j_idt9", {id: "j_idt9"});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt11" name="j_idt11" type="password"
+                                                    class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all"
+                                                    autocomplete="off" placeholder="Password"/>
+                            <script id="j_idt11_s" type="text/javascript">$(function () {
+                                PrimeFaces.cw("Password", "widget_j_idt11", {id: "j_idt11"});
+                            });</script>
+                        </div>{% endcomment %}
+                    <form action="{% url 'login' %}" method="POST" class="ui-g ui-fluid">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="ui-g-6">
+                            <button type="submit"
+                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left">
+                                <span class="ui-button-icon-left ui-icon ui-c fa fa-check"></span>
+                                <span class="ui-button-text ui-c">Login</span>
+                            </button>
+                        </div>
+                        <div class="ui-g-6 password-container"><a href="#" class="ui-link ui-widget">Forgot
+                            Password?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

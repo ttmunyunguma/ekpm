@@ -131,3 +131,7 @@ STATICFILES_DIRS = (os.path.join('static'), )
 
 AUTH_USER_MODEL = 'manager.User'
 
+LOGIN_REDIRECT_URL = 'manager:portal'
+LOGOUT_REDIRECT_URL = 'landing_page'
+
+

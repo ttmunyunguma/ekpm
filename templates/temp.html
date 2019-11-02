@@ -1,5 +1,775 @@
-<div class="layout-content-container">
-    <div class="ui-g dashboard">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- Mirrored from www.primefaces.org/apollo/empty.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 Oct 2019 09:11:32 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8"/><!-- /Added by HTTrack -->
+<head id="j_idt2">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link type="text/css" rel="stylesheet"
+          href="javax.faces.resource/theme.cssb8e8.css?ln=primefaces-apollo-blue-light"/>
+    <link type="text/css" rel="stylesheet"
+          href="javax.faces.resource/fa/font-awesome.css408e.css?ln=primefaces&amp;v=6.2"/>
+    <link type="text/css" rel="stylesheet" href="javax.faces.resource/components.css408e.css?ln=primefaces&amp;v=6.2"/>
+    <link type="text/css" rel="stylesheet"
+          href="javax.faces.resource/inputswitch/inputswitch.css408e.css?ln=primefaces&amp;v=6.2"/>
+    <script type="text/javascript"
+            src="javax.faces.resource/jquery/jquery.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+    <script type="text/javascript" src="javax.faces.resource/core.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+    <script type="text/javascript" src="javax.faces.resource/components.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+    <script type="text/javascript"
+            src="javax.faces.resource/inputswitch/inputswitch.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+    <script type="text/javascript"
+            src="javax.faces.resource/jquery/jquery-plugins.js408e.xhtml?ln=primefaces&amp;v=6.2"></script>
+    <link type="text/css" rel="stylesheet" href="javax.faces.resource/css/nanoscroller.css73d4.css?ln=apollo-layout"/>
+    <link type="text/css" rel="stylesheet"
+          href="javax.faces.resource/css/layout-blue-light.css73d4.css?ln=apollo-layout"/>
+    <script type="text/javascript">if (window.PrimeFaces) {
+        PrimeFaces.settings.locale = 'en_US';
+    }</script>
+    <title>PrimeFaces Apollo</title>
+    <script type="text/javascript" src="javax.faces.resource/js/nanoscroller.js73d4.xhtml?ln=apollo-layout"></script>
+    <script type="text/javascript" src="javax.faces.resource/js/layout.js73d4.xhtml?ln=apollo-layout"></script>
+</head>
+<body>
 
+<div class="layout-wrapper layout-horizontal">
+
+    <div class="topbar clearfix"><img id="j_idt12"
+                                      src="javax.faces.resource/images/apollo_logo.png73d4.png?ln=apollo-layout" alt=""
+                                      class="logo"/>
+
+        <a id="menu-button" href="#">
+            <i class="fa fa-align-left"></i>
+        </a>
+
+        <a href="#" class="profile">
+            <span class="username">Sarah Miller</span><img id="j_idt14"
+                                                           src="javax.faces.resource/images/avatar.png73d4.png?ln=apollo-layout"
+                                                           alt=""/>
+            <i class="fa fa-angle-down"></i>
+        </a>
+
+        <span class="topbar-search">
+            <input type="text" placeholder="Search"/>
+            <span class="fa fa-search"></span>
+        </span>
+
+        <span class="topbar-themeswitcher">
+<form id="j_idt16" name="j_idt16" method="post" action="https://www.primefaces.org/apollo/empty.xhtml"
+      enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt16" value="j_idt16"/>
+<div id="j_idt16:j_idt17" class="ui-inputswitch ui-widget ui-widget-content ui-corner-all"><div
+        class="ui-inputswitch-off"><span>off</span></div><div class="ui-inputswitch-on ui-state-active"><span>on</span></div><div
+        class="ui-inputswitch-handle ui-state-default "></div><div class="ui-helper-hidden-accessible"><input
+        id="j_idt16:j_idt17_input" name="j_idt16:j_idt17_input" type="checkbox"
+        onchange="PrimeFaces.ab({s:&quot;j_idt16:j_idt17&quot;,e:&quot;change&quot;,p:&quot;j_idt16:j_idt17&quot;,onco:function(xhr,status,args){setTimeout(function() {document.forms[0].submit()}, 500);}});"/></div></div><script
+        id="j_idt16:j_idt17_s"
+        type="text/javascript">PrimeFaces.cw("InputSwitch", "widget_j_idt16_j_idt17", {id: "j_idt16:j_idt17"});</script><input
+        type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0"
+        value="-1536507509240031764:-1357183809428549804" autocomplete="off"/>
+</form>
+        </span>
+
+        <ul class="topbar-menu fadeInDown">
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-user"></i>
+                    <span class="topbar-item-name">Profile</span>
+                </a>
+                <ul>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-user"></i>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-user-secret"></i>
+                            <span>Privacy</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-sign-out"></i>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-cog"></i>
+                    <span class="topbar-item-name">Settings</span>
+                </a>
+                <ul>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-paint-brush"></i>
+                            <span>Change Theme</span>
+                            <span class="topbar-badge">1</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-star-o"></i>
+                            <span>Favorites</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-lock"></i>
+                            <span>Lock Screen</span>
+                            <span class="topbar-badge">3</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-picture-o"></i>
+                            <span>Wallpaper</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-envelope-o"></i>
+                    <span class="topbar-item-name">Messages</span>
+                    <span class="topbar-badge">5</span>
+                </a>
+                <ul>
+                    <li role="menuitem">
+                        <a href="#" class="topbar-message"><img id="j_idt19"
+                                                                src="javax.faces.resource/images/avatar1.png73d4.png?ln=apollo-layout"
+                                                                alt="" width="35"/>
+                            <span>Give me a call</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="topbar-message"><img id="j_idt21"
+                                                                src="javax.faces.resource/images/avatar2.png73d4.png?ln=apollo-layout"
+                                                                alt="" width="35"/>
+                            <span>Reports attached</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="topbar-message"><img id="j_idt23"
+                                                                src="javax.faces.resource/images/avatar3.png73d4.png?ln=apollo-layout"
+                                                                alt="" width="35"/>
+                            <span>About your invoice</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="topbar-message"><img id="j_idt25"
+                                                                src="javax.faces.resource/images/avatar2.png73d4.png?ln=apollo-layout"
+                                                                alt="" width="35"/>
+                            <span>Meeting today</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#" class="topbar-message"><img id="j_idt27"
+                                                                src="javax.faces.resource/images/avatar4.png73d4.png?ln=apollo-layout"
+                                                                alt="" width="35"/>
+                            <span>Out of office</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="topbar-icon fa fa-fw fa-bell-o"></i>
+                    <span class="topbar-item-name">Notifications</span>
+                    <span class="topbar-badge">2</span>
+                </a>
+                <ul>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-tasks"></i>
+                            <span>Pending tasks</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-calendar-check-o"></i>
+                            <span>Meeting today</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-download"></i>
+                            <span>Download</span>
+                        </a>
+                    </li>
+                    <li role="menuitem">
+                        <a href="#">
+                            <i class="fa fa-fw fa-plane"></i>
+                            <span>Book flight</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="topbar-search-item">
+                <span class="topbar-search">
+                    <input type="text" placeholder="Search"/>
+                    <span class="fa fa-search"></span>
+                </span>
+            </li>
+        </ul>
     </div>
+
+    <div class="layout-menu-container">
+        <div class="nano">
+            <div class="nano-content menu-scroll-content">
+                <div class="layout-menu-title">MENU</div>
+                <form id="menuform" name="menuform" method="post" action="https://www.primefaces.org/apollo/empty.xhtml"
+                      enctype="application/x-www-form-urlencoded">
+                    <input type="hidden" name="menuform" value="menuform"/>
+                    <ul id="menuform:j_idt30" class="layout-menu">
+                        <li id="menuform:apl_dashboard" role="menuitem"><a href="dashboard.html"><i
+                                class="fa fa-dashboard fa-fw"></i><span>Dashboard</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Dashboard</div>
+                            </div>
+                        </li>
+                        <li id="menuform:apl_menus" role="menuitem"><a href="#"><i class="fa fa-bars fa-fw"></i><span>Menu</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Menu</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_hmenu" role="menuitem"><a href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_hmenu':'menuform:apl_hmenu'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-arrows-v fa-fw"></i><span>Horizontal</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Horizontal</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_omenu" role="menuitem"><a href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_omenu':'menuform:apl_omenu'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-arrows-h fa-fw"></i><span>Overlay</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Overlay</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_smenu" role="menuitem"><a href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_smenu':'menuform:apl_smenu'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-bars fa-fw"></i><span>Static</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Static</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_slmenu" role="menuitem"><a href="#"
+                                                                                onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_slmenu':'menuform:apl_slmenu'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-window-restore fa-fw"></i><span>Slim</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Slim</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_dark" role="menuitem"><a href="#"><i class="fa fa-circle fa-fw"></i><span>Dark</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i><span class="menuitem-badge">8</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Dark</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_dblue" role="menuitem"><a class="blue-theme" href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dblue':'menuform:apl_dblue'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Blue</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Blue</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dgreen" role="menuitem"><a class="green-theme" href="#"
+                                                                                onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dgreen':'menuform:apl_dgreen'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Green</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Green</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dcyan" role="menuitem"><a class="cyan-theme" href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dcyan':'menuform:apl_dcyan'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Cyan</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Cyan</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dpurple" role="menuitem"><a class="purple-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dpurple':'menuform:apl_dpurple'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Purple</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Purple</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dindigo" role="menuitem"><a class="indigo-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dindigo':'menuform:apl_dindigo'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Indigo</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Indigo</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dyellow" role="menuitem"><a class="yellow-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dyellow':'menuform:apl_dyellow'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Yellow</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Yellow</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dorange" role="menuitem"><a class="orange-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dorange':'menuform:apl_dorange'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Orange</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Orange</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_dpink" role="menuitem"><a class="pink-theme" href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_dpink':'menuform:apl_dpink'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Pink</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Pink</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_light" role="menuitem"><a href="#"><i
+                                class="fa fa-circle-o fa-fw"></i><span>Light</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i><span class="menuitem-badge">8</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Light</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_lblue" role="menuitem"><a class="blue-theme" href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lblue':'menuform:apl_lblue'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Blue</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Blue</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lgreen" role="menuitem"><a class="green-theme" href="#"
+                                                                                onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lgreen':'menuform:apl_lgreen'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Green</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Green</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lcyan" role="menuitem"><a class="cyan-theme" href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lcyan':'menuform:apl_lcyan'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Cyan</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Cyan</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lpurple" role="menuitem"><a class="purple-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lpurple':'menuform:apl_lpurple'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Purple</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Purple</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lindigo" role="menuitem"><a class="indigo-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lindigo':'menuform:apl_lindigo'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Indigo</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Indigo</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lyellow" role="menuitem"><a class="yellow-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lyellow':'menuform:apl_lyellow'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Yellow</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Yellow</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lorange" role="menuitem"><a class="orange-theme" href="#"
+                                                                                 onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lorange':'menuform:apl_lorange'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Orange</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Orange</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_lpink" role="menuitem"><a class="pink-theme" href="#"
+                                                                               onclick="PrimeFaces.addSubmitParam('menuform',{'menuform:apl_lpink':'menuform:apl_lpink'}).submit('menuform');return false;PrimeFaces.onPost();"><i
+                                        class="fa fa-paint-brush fa-fw"></i><span>Pink</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Pink</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_components" role="menuitem"><a href="#"><i class="fa fa-sitemap fa-fw"></i><span>Components</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Components</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_sample" role="menuitem"><a href="sample.html"><i
+                                        class="fa fa-columns fa-fw"></i><span>Sample Page</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Sample Page</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_forms" role="menuitem"><a href="forms.html"><i
+                                        class="fa fa-code fa-fw"></i><span>Forms</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Forms</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_data" role="menuitem"><a href="data.html"><i
+                                        class="fa fa-table fa-fw"></i><span>Data</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Data</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_panels" role="menuitem"><a href="panel.html"><i
+                                        class="fa fa-list-alt fa-fw"></i><span>Panels</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Panels</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_overlays" role="menuitem"><a href="overlay.html"><i
+                                        class="fa fa-square fa-fw"></i><span>Overlays</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Overlays</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_menucomponents" role="menuitem"><a href="menu.html"><i
+                                        class="fa fa-minus-square-o fa-fw"></i><span>Menus</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Menus</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_messages" role="menuitem"><a href="messages.html"><i
+                                        class="fa fa-circle-o-notch fa-fw"></i><span>Messages</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Messages</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_charts" role="menuitem"><a href="charts.html"><i
+                                        class="fa fa-area-chart fa-fw"></i><span>Charts</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Charts</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_file" role="menuitem"><a href="file.html"><i
+                                        class="fa fa-arrow-circle-o-up fa-fw"></i><span>File</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">File</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_misc" role="menuitem"><a href="misc.html"><i
+                                        class="fa fa-user-secret fa-fw"></i><span>Misc</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Misc</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_default" role="menuitem"><a href="#"><i class="fa fa-life-saver fa-fw"></i><span>Pages</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Pages</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_empty" role="menuitem"><a href="empty.html"><i
+                                        class="fa fa-square-o fa-fw"></i><span>Empty Page</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Empty Page</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_landing" role="menuitem"><a href="landing.html"><i
+                                        class="fa fa-certificate fa-fw"></i><span>Landing</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Landing</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_login" role="menuitem"><a href="login.html"><i
+                                        class="fa fa-sign-in fa-fw"></i><span>Login Page</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Login Page</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_error" role="menuitem"><a href="error.html"><i
+                                        class="fa fa-exclamation-circle fa-fw"></i><span>Error Page</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Error Page</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_404" role="menuitem"><a href="404.html"><i
+                                        class="fa fa-times fa-fw"></i><span>404 Page</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">404 Page</div>
+                                    </div>
+                                </li>
+                                <li id="menuform:apl_access" role="menuitem"><a href="access.html"><i
+                                        class="fa fa-exclamation-triangle fa-fw"></i><span>Access Denied Page</span></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Access Denied Page</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_hierarchy" role="menuitem"><a href="#"><i class="fa fa-gg fa-fw"></i><span>Hierarchy</span><i
+                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Hierarchy</div>
+                            </div>
+                            <ul role="menu">
+                                <li id="menuform:apl_sm1" role="menuitem"><a href="#"><i
+                                        class="fa fa-sign-in fa-fw"></i><span>Submenu 1</span><i
+                                        class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Submenu 1</div>
+                                    </div>
+                                    <ul role="menu">
+                                        <li id="menuform:apl_sm11" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Submenu 1.1</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                                <div class="layout-menu-tooltip-text">Submenu 1.1</div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk111" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 1.1.1</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 1.1.1</div>
+                                                    </div>
+                                                </li>
+                                                <li id="menuform:apl_lnk112" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 1.1.2</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 1.1.2</div>
+                                                    </div>
+                                                </li>
+                                                <li id="menuform:apl_lnk113" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 1.1.3</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 1.1.3</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li id="menuform:apl_sm12" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Submenu 1.2</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                                <div class="layout-menu-tooltip-text">Submenu 1.2</div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk121" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 1.2.1</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 1.2.1</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li id="menuform:apl_sm2" role="menuitem"><a href="#"><i
+                                        class="fa fa-sign-in fa-fw"></i><span>Submenu 2</span><i
+                                        class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                    <div class="layout-menu-tooltip">
+                                        <div class="layout-menu-tooltip-arrow"></div>
+                                        <div class="layout-menu-tooltip-text">Submenu 2</div>
+                                    </div>
+                                    <ul role="menu">
+                                        <li id="menuform:apl_sm21" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Submenu 2.1</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                                <div class="layout-menu-tooltip-text">Submenu 2.1</div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk211" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 2.1.1</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 2.1.1</div>
+                                                    </div>
+                                                </li>
+                                                <li id="menuform:apl_lnk212" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 2.1.2</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 2.1.2</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li id="menuform:apl_sm22" role="menuitem"><a href="#"><i
+                                                class="fa fa-sign-in fa-fw"></i><span>Submenu 2.2</span><i
+                                                class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
+                                            <div class="layout-menu-tooltip">
+                                                <div class="layout-menu-tooltip-arrow"></div>
+                                                <div class="layout-menu-tooltip-text">Submenu 2.2</div>
+                                            </div>
+                                            <ul role="menu">
+                                                <li id="menuform:apl_lnk221" role="menuitem"><a href="#"><i
+                                                        class="fa fa-sign-in fa-fw"></i><span>Link 2.2.1</span></a>
+                                                    <div class="layout-menu-tooltip">
+                                                        <div class="layout-menu-tooltip-arrow"></div>
+                                                        <div class="layout-menu-tooltip-text">Link 2.2.1</div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li id="menuform:apl_doc" role="menuitem"><a href="docs.html"><i
+                                class="fa fa-book fa-fw"></i><span>Docs</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Docs</div>
+                            </div>
+                        </li>
+                        <li id="menuform:apl_buy" role="menuitem"><a href="https://www.primefaces.org/store"><i
+                                class="fa fa-credit-card fa-fw"></i><span>Buy</span></a>
+                            <div class="layout-menu-tooltip">
+                                <div class="layout-menu-tooltip-arrow"></div>
+                                <div class="layout-menu-tooltip-text">Buy</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <script id="menuform:j_idt30_s"
+                            type="text/javascript">PrimeFaces.cw("Apollo", "widget_menuform_j_idt30", {id: "menuform:j_idt30"});</script>
+
+                    <div class="layout-menu-footer">
+                        <div class="layout-menu-footer-title">TASKS</div>
+
+                        <div class="layout-menu-footer-content">
+                            <div id="menuform:j_idt32"
+                                 class="ui-progressbar ui-widget ui-widget-content ui-corner-all ui-progressbar-determinate">
+                                <div class="ui-progressbar-value ui-widget-header ui-corner-all"
+                                     style="display:block;width:50%"></div>
+                                <div class="ui-progressbar-label" style="display:block"></div>
+                            </div>
+                            Today
+
+                            <div id="menuform:j_idt34"
+                                 class="ui-progressbar ui-widget ui-widget-content ui-corner-all ui-progressbar-determinate">
+                                <div class="ui-progressbar-value ui-widget-header ui-corner-all"
+                                     style="display:block;width:80%"></div>
+                                <div class="ui-progressbar-label" style="display:block"></div>
+                            </div>
+                            Overall
+                        </div>
+                    </div>
+                    <input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:27"
+                           value="-1536507509240031764:-1357183809428549804" autocomplete="off"/>
+                </form>
+
+                <div class="nano-scroll-footer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-content">
+        <div class="layout-breadcrumb">
+            <ul>
+                <li><a href="dashboard.html" class="ui-link ui-widget"><i class="fa fa-home"></i></a></li>
+                <li>/</li>
+                <li>Pages</li>
+                <li>/</li>
+                <li><a href="empty.html" class="ui-link ui-widget">Empty</a></li>
+            </ul>
+
+            <div class="layout-breadcrumb-options">
+                <a href="#" title="Backup">
+                    <i class="fa fa-cloud-upload"></i>
+                </a><a href="#" title="Bookmark">
+                <i class="fa fa-bookmark"></i>
+            </a><a href="#" title="Logout">
+                <i class="fa fa-sign-out"></i>
+            </a>
+            </div>
+        </div>
+
+        <div class="layout-content-container">
+
+        </div>
+    </div>
+
+    <div class="layout-footer">
+        <div class="clearfix">
+            <span class="footer-text-left">PrimeFaces Apollo</span>
+            <span class="footer-text-right">All Rights Reserved</span>
+        </div>
+    </div>
+
+    <div class="layout-mask"></div>
 </div>
+<div id="j_idt52" style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+    <div id="j_idt52_start" style="display:none">
+        <i class="ajax-status-icon fa fa-spinner fa-spin"></i></div>
+    <div id="j_idt52_complete" style="display:none"></div>
+</div>
+<script id="j_idt52_s" type="text/javascript">$(function () {
+    PrimeFaces.cw("AjaxStatus", "widget_j_idt52", {id: "j_idt52"});
+});</script>
+</body>
+
+
+<!-- Mirrored from www.primefaces.org/apollo/empty.xhtml by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 31 Oct 2019 09:11:32 GMT -->
+</html>

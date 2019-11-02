@@ -10,6 +10,15 @@ ID_TYPES = [
     ('Drivers License', 'Drivers License'),
     ('Company Tax Clearance', 'Company Tax Clearance'),
 ]
+PROPERTY_TYPES = [
+    ('Residential', 'Residential'),
+    ('Apartment', 'Apartment'),
+    ('Office', 'Office'),
+    ('Industrial', 'Industrial'),
+    ('Commercial', 'Commercial'),
+    ('Agricultural', 'Agricultural'),
+    ('Land', 'Land'),
+]
 
 
 class Country(models.Model):
@@ -100,15 +109,17 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class PropertyManager(models.Model):
+    """Property Manager who will be using the platform"""
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     organisation = models.ForeignKey('Organisation', on_delete=models.CASCADE)
     details = models.TextField(blank=True)
 
     def __str__(self):
-        return self.user
+        return self.user.email
 
 
 class LandLord(models.Model):
+    """Property Owners"""
     name = models.CharField(max_length=255)
     phone = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
@@ -127,25 +138,18 @@ class LandLord(models.Model):
 
 
 class Property(models.Model):
-    PROPERTY_TYPES = [
-        ('Residential', 'Residential'),
-        ('Office', 'Office'),
-        ('Industrial', 'Industrial'),
-        ('Commercial', 'Commercial'),
-        ('Agricultural', 'Agricultural'),
-
-    ]
+    """Property Instance, can be a building, land, land and building"""
     property_type = models.CharField(max_length=20, choices=PROPERTY_TYPES)
     organisation_managing = models.ForeignKey('Organisation', on_delete=models.CASCADE)
     land_lord = models.ForeignKey('LandLord', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    property_value = models.DecimalField(blank=True)
+    property_value = models.DecimalField(max_digits=15, decimal_places=3, blank=True)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     country = models.ForeignKey('Country', on_delete=models.CASCADE)
     description = models.TextField()
-    lot_size = models.DecimalField()
-    building_size = models.DecimalField()
+    lot_size = models.DecimalField(max_digits=15, decimal_places=3,)
+    building_size = models.DecimalField(max_digits=15, decimal_places=3,)
     date_added = models.DateTimeField(auto_now=True)
     last_updated = models.DateTimeField(blank=True)
     is_active = models.BooleanField(default=True)
@@ -156,13 +160,14 @@ class Property(models.Model):
 
 
 class PropertyUnit(models.Model):
+    """Single Apartments in an Apartment building or Floors in an office building: single rental entities"""
     property = models.ForeignKey('Property', on_delete=models.CASCADE)
     unit_name = models.CharField(max_length=255)
     is_vacant = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     max_number_of_tenants = models.IntegerField(default=1)
-    rental_value = models.DecimalField()
-    service_fees = models.DecimalField()
+    rental_value = models.DecimalField(max_digits=15, decimal_places=3,)
+    service_fees = models.DecimalField(max_digits=15, decimal_places=3,)
     date_added = models.DateTimeField(auto_now=True)
     last_updated = models.DateTimeField(blank=True)
     details = models.TextField(blank=True)
@@ -185,5 +190,3 @@ class Tenant(models.Model):
 
     def __str__(self):
         return self.name
-
-

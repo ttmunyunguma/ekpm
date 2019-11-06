@@ -132,6 +132,9 @@ class LandLord(models.Model):
     bank_branch = models.CharField(max_length=255)
     bank_account_number = models.CharField(max_length=255)
     details = models.TextField(blank=True)
+    representative = models.CharField(max_length=255, blank=True)
+    managed_by = models.ForeignKey('Organisation', on_delete=models.CASCADE, default=2)
+    date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}
+    eKPM Portal | Land Lord
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="card card-w-title">
+                <h1>Land Lord</h1>
+                <div class="ui-g ui-fluid">
+                    <div >
+                        <form method="POST" class="ui-g-12">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <div class="ui-g">
+                                <div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+                                    <button id="j_idt180" name="j_idt180"
+                                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn"
+                                            style="margin-bottom:10px;" type="submit"><span
+                                            class="ui-button-text ui-c">SAVE</span></button>
+                                    <script id="j_idt180_s"
+                                            type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt180", {id: "j_idt180"});</script>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

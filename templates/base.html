@@ -13,6 +13,9 @@
 
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/theme.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/fa/font-awesome.css' %}"/>
+{#    <link href="{% static 'resource/fontawesome/css/fontawesome.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'resource/fontawesome/css/brands.css' %}" rel="stylesheet">#}
+{#    <link href="{% static 'resource/fontawesome/css/solid.css' %}" rel="stylesheet">#}
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/components.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'resource/inputswitch/inputswitch.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/nanoscroller.css' %}"/>
@@ -220,19 +223,29 @@
                             <ul role="menu">
                                 <li id="menuform:apl_hmenu" role="menuitem">
                                     <a href="#"><i
-                                            class="fa fa-window-restore fa-fw"></i><span title="New">New</span></a>
+                                            class="fa fa-plus-circle fa-fw"></i><span title="New">New</span></a>
+                                    <ul role="menu">
+                                        <li id="menuform:apl_lnk111" role="menuitem">
+                                            <a href="{% url 'manager:landlords_new' %}"><i class="fa fa-user fa-fw"></i><span>LandLord</span></a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
                         <li id="menuform:apl_dark" role="menuitem"><a href="#"><i class="fa fa-circle fa-fw"></i><span>Processes</span><i
                                 class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i><span
-                                class="menuitem-badge">3</span></a>
+                                class="menuitem-badge">2</span></a>
                             <div class="layout-menu-tooltip">
                                 <div class="layout-menu-tooltip-arrow"></div>
                                 <div class="layout-menu-tooltip-text">Processes</div>
                             </div>
                             <ul role="menu">
-
+                                <li id="menuform:apl_lnk111" role="menuitem">
+                                    <a href="{% url 'manager:landlords' %}"><i class="fa fa-user fa-fw"></i><span>LandLords</span></a>
+                                </li>
+                                <li id="menuform:apl_lnk111" role="menuitem">
+                                    <a href="#"><i class="fa fa-user fa-fw"></i><span>Tenants</span></a>
+                                </li>
                             </ul>
                         </li>
                         <li id="menuform:apl_light" role="menuitem"><a href="#"><i
@@ -280,37 +293,21 @@
                             </div>
                             <ul role="menu">
                                 <li id="menuform:apl_empty" role="menuitem"><a href="#"><i
-                                        class="fa fa-square-o fa-fw"></i><span>eKCRM</span></a>
-                                    <div class="layout-menu-tooltip">
-                                        <div class="layout-menu-tooltip-arrow"></div>
-                                        <div class="layout-menu-tooltip-text">eKCRM</div>
-                                    </div>
+                                        class="fa fa-square-o fa-fw"></i><span title="eKCRM">eKCRM</span></a>
                                 </li>
                             </ul>
                         </li>
                         <li id="menuform:apl_hierarchy" role="menuitem"><a href="#"><i class="fa fa-gg fa-fw"></i>
                             <span>Reports</span><i
                                     class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-                            <div class="layout-menu-tooltip">
-                                <div class="layout-menu-tooltip-arrow"></div>
-                                <div class="layout-menu-tooltip-text">Reports</div>
-                            </div>
                             <ul role="menu">
                                 <li id="menuform:apl_sm1" role="menuitem"><a href="#"><i
                                         class="fa fa-sign-in fa-fw"></i><span>Tenant Reports</span><i
                                         class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-                                    <div class="layout-menu-tooltip">
-                                        <div class="layout-menu-tooltip-arrow"></div>
-                                        <div class="layout-menu-tooltip-text">Tenant</div>
-                                    </div>
                                     <ul role="menu">
                                         <li id="menuform:apl_sm11" role="menuitem"><a href="#"><i
                                                 class="fa fa-sign-in fa-fw"></i><span>Tenancy Schedules</span><i
                                                 class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i></a>
-                                            <div class="layout-menu-tooltip">
-                                                <div class="layout-menu-tooltip-arrow"></div>
-                                                <div class="layout-menu-tooltip-text">Schedules</div>
-                                            </div>
                                             <ul role="menu">
                                                 <li id="menuform:apl_lnk111" role="menuitem"><a href="#"><i
                                                         class="fa fa-sign-in fa-fw"></i><span>Schedule 1</span></a>
@@ -443,7 +440,8 @@
 
     <div class="layout-footer">
         <div class="clearfix">
-            <span class="footer-text-left">Cuius Inc.</span>
+            <span class="footer-text-left">
+                Powered by <a href="http://www.cuius.co.zw" target="_blank">Cuius Inc.</a></span>
             <span class="footer-text-right">
                 Copyright &copy;  <script>document.write(new Date().getFullYear().toString())</script>
                 All Rights Reserved</span>

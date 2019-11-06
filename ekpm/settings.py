@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'crispy_forms',
 
     'api',
     'manager',
@@ -133,5 +134,8 @@ AUTH_USER_MODEL = 'manager.User'
 
 LOGIN_REDIRECT_URL = 'manager:portal'
 LOGOUT_REDIRECT_URL = 'landing_page'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'uni_form'
 
 

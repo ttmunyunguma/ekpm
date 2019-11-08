@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    eKPM Portal | Land Lords
+    eKPM Portal | Properties
 {% endblock %}
 
 {% block content %}
@@ -9,10 +9,10 @@
     <div class="ui-g">
         <div class="ui-g-12">
             <div class="card no-margin">
-                <h1>Land Lords</h1>
+                <h1>Properties</h1>
                 <div id="form:j_idt47" class="ui-datatable ui-widget ui-datatable-reflow">
                     <div class="ui-datatable-header ui-widget-header ui-corner-top">
-                        Property Owners with properties under your management
+                        Properties under your management
                     </div>
                     <div id="form:j_idt47_paginator_top" class="ui-paginator ui-paginator-top ui-widget-header"
                          role="navigation" aria-label="Pagination">
@@ -41,17 +41,17 @@
                             <tr role="row">
                                 <th id="form:j_idt47:j_idt49" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Id" scope="col">
-                                    <span class="ui-column-title">Name</span>
+                                    <span class="ui-column-title">Title</span>
                                     <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
                                 </th>
                                 <th id="form:j_idt47:j_idt51" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Year" scope="col">
-                                    <span class="ui-column-title">Phone</span>
+                                    <span class="ui-column-title">Type</span>
                                     <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
                                 </th>
                                 <th id="form:j_idt47:j_idt53" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Brand" scope="col">
-                                    <span class="ui-column-title">Date Created</span>
+                                    <span class="ui-column-title">City</span>
                                     <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
                                 </th>
                                 <th id="form:j_idt47:j_idt55" class="ui-state-default ui-sortable-column"
@@ -62,22 +62,22 @@
                             </thead>
 
                             <tbody id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
-                            {% for landlord in landlords %}
+                            {% for property in properties %}
 
                                 <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
                                     role="row" onclick=""
                                     aria-selected="false">
-                                    <td role="gridcell">{{ landlord.name }}</td>
-                                    <td role="gridcell">{{ landlord.phone }}</td>
-                                    <td role="gridcell">{{ landlord.date_created }}</td>
+                                    <td role="gridcell">{{ property.title }}</td>
+                                    <td role="gridcell">{{ property.property_type }}</td>
+                                    <td role="gridcell">{{ property.city }}</td>
                                     <td role="gridcell">
                                         <a class="btn btn-block"
-                                           href="{% url 'manager:landlord_detail' pk=landlord.id %}">
+                                           href="{% url 'manager:property_detail' pk=property.id %}">
                                             <span title="View Details" class="fa fa-eye"></span>
                                         </a>
                                     </td>
                                 </tr>
-                                <input type="hidden" id="Url" data-url="{% url 'manager:landlord_detail' pk=landlord.id %}"/>
+                                <input type="hidden" id="Url" data-url="{% url 'manager:property_detail' pk=property.id %}"/>
                             {% endfor %}
                             </tbody>
                         </table>

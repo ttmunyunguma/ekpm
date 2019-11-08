@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'bootstrap4',
     'crispy_forms',
 
     'api',
@@ -137,5 +138,25 @@ LOGOUT_REDIRECT_URL = 'landing_page'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # CRISPY_TEMPLATE_PACK = 'uni_form'
+
+
+# Platform Constants
+ID_TYPES = [
+    ('National ID', 'National ID'),
+    ('Passport', 'Passport'),
+    ('Drivers License', 'Drivers License'),
+    ('Company Tax Clearance', 'Company Tax Clearance'),
+    ('Other', 'Other'),
+]
+PROPERTY_TYPES = [
+    ('Residential', 'Residential'),
+    ('Apartment Building', 'Apartment Building'),
+    ('Office Building', 'Office Building'),
+    ('Industrial', 'Industrial'),
+    ('Commercial', 'Commercial'),
+    ('Agricultural', 'Agricultural'),
+    ('Land', 'Land'),
+    ('Other', 'Other'),
+]
 
 

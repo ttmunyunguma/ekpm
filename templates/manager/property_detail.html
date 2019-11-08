@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}
+    eKPM Portal | Land Lord
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="card">
+                <h1>Property: {{ property.title }}</h1>
+                <table id="form:j_idt112:0:j_idt113"
+                       class="ui-panelgrid ui-widget ui-panelgrid-blank" style="width:100%"
+                       role="grid">
+                    <thead class="ui-panelgrid-header">
+                    <tr class="ui-widget-header" role="row">
+                        <td colspan="2" role="columnheader"
+                            class="ui-panelgrid-cell ui-widget-header">
+                            <h1 id="form:j_idt112:0:j_idt114" style="display:inline-block;margin-bottom:15px">
+                                Details
+                            </h1>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Type:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700">{{ property.property_type }}</span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Land Lord:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.land_lord }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Title:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.title }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Value:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ property.property_value }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Address:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.address }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">City:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.city }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Country:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.country }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Description:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.description }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Lot Size:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.lot_size }}(sqmts) </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Building Size:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.building_size }}(sqmts) </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Date Added:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.date_created }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Geographic Location:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.geographic_location }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">First Erected:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.first_erected_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Acquired:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.property_acquired_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Acquisition Cost:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ property.acquisition_cost }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Management Started:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.management_started_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Management Stopped:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.management_stopped_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Disposed:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.property_disposed_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Selling Price:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ property.selling_price }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Zone:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.zone }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Extra Details:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ property.details }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Rentable Units:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <a id="j_idt182"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only cyan-btn"
+                           type="button"><span
+                                class="ui-button-text ui-c">View Available Units</span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="ui-g">
+                    <div>
+                        <a id="j_idt180" href="{% url 'manager:property_update' pk=property.pk %}"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn"
+                           style="margin-bottom:10px; margin-top: 10px" type="button"><span
+                                class="ui-button-text ui-c">Update</span></a>
+                        <script id="j_idt180_s"
+                                type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt180", {id: "j_idt180"});</script>
+
+                        <a id="j_idt182"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only red-btn"
+                           style="margin-bottom:10px; margin-top: 10px" type="button"><span
+                                class="ui-button-text ui-c">Delete</span></a>
+                        <script id="j_idt182_s"
+                                type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt182", {id: "j_idt182"});</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

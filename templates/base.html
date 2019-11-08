@@ -13,9 +13,6 @@
 
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/theme.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/fa/font-awesome.css' %}"/>
-{#    <link href="{% static 'resource/fontawesome/css/fontawesome.css' %}" rel="stylesheet">#}
-{#    <link href="{% static 'resource/fontawesome/css/brands.css' %}" rel="stylesheet">#}
-{#    <link href="{% static 'resource/fontawesome/css/solid.css' %}" rel="stylesheet">#}
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/components.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'resource/inputswitch/inputswitch.css' %}"/>
     <link type="text/css" rel="stylesheet" href="{% static 'resource/css/nanoscroller.css' %}"/>
@@ -228,6 +225,9 @@
                                         <li id="menuform:apl_lnk111" role="menuitem">
                                             <a href="{% url 'manager:landlords_new' %}"><i class="fa fa-user fa-fw"></i><span>LandLord</span></a>
                                         </li>
+                                        <li id="menuform:apl_lnk111" role="menuitem">
+                                            <a href="{% url 'manager:properties_new' %}"><i class="fa fa-home fa-fw"></i><span>Property</span></a>
+                                        </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -245,6 +245,9 @@
                                 </li>
                                 <li id="menuform:apl_lnk111" role="menuitem">
                                     <a href="#"><i class="fa fa-user fa-fw"></i><span>Tenants</span></a>
+                                </li>
+                                <li id="menuform:apl_lnk111" role="menuitem">
+                                    <a href="{% url 'manager:properties' %}"><i class="fa fa-home fa-fw"></i><span>Properties</span></a>
                                 </li>
                             </ul>
                         </li>

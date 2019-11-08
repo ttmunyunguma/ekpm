@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}
+    eKPM Portal | Land Lord
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="card">
+                <h1>Land Lord: {{ landlord.name }}</h1>
+                <table id="form:j_idt112:0:j_idt113"
+                       class="ui-panelgrid ui-widget ui-panelgrid-blank" style="width:100%"
+                       role="grid">
+                    <thead class="ui-panelgrid-header">
+                    <tr class="ui-widget-header" role="row">
+                        <td colspan="2" role="columnheader"
+                            class="ui-panelgrid-cell ui-widget-header">
+                            <h1 id="form:j_idt112:0:j_idt114" style="display:inline-block;margin-bottom:15px">
+                                Details
+                            </h1>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Name:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700">{{ landlord.name }}</span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Phone:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.phone }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Address:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.address }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">City:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.city }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Country:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.country }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Identification:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.identification_type }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">ID Number:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.identification }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Nationality:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.nationality }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Bank Name:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.bank }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Branch:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.bank_branch }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Bank Account Number:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.bank_account_number }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Represented By:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.representative }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Date Created:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.date_created }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Extra Details:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ landlord.details }} </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="ui-g">
+                    <div>
+                        <a id="j_idt180" href="{% url 'manager:landlord_update' pk=landlord.pk %}"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn"
+                           style="margin-bottom:10px; margin-top: 10px" type="button"><span
+                                class="ui-button-text ui-c">Update</span></a>
+                        <script id="j_idt180_s"
+                                type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt180", {id: "j_idt180"});</script>
+
+                        <a id="j_idt182"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only red-btn"
+                           style="margin-bottom:10px; margin-top: 10px" type="button"><span
+                                class="ui-button-text ui-c">Delete</span></a>
+                        <script id="j_idt182_s"
+                                type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt182", {id: "j_idt182"});</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

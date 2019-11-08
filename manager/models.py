@@ -3,22 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
-
-ID_TYPES = [
-    ('National ID', 'National ID'),
-    ('Passport', 'Passport'),
-    ('Drivers License', 'Drivers License'),
-    ('Company Tax Clearance', 'Company Tax Clearance'),
-]
-PROPERTY_TYPES = [
-    ('Residential', 'Residential'),
-    ('Apartment', 'Apartment'),
-    ('Office', 'Office'),
-    ('Industrial', 'Industrial'),
-    ('Commercial', 'Commercial'),
-    ('Agricultural', 'Agricultural'),
-    ('Land', 'Land'),
-]
+from django.urls import reverse_lazy
 
 
 class Country(models.Model):
@@ -125,7 +110,7 @@ class LandLord(models.Model):
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     country = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='country')
-    identification_type = models.CharField(max_length=55, choices=ID_TYPES)
+    identification_type = models.CharField(max_length=55, choices=settings.ID_TYPES)
     identification = models.CharField(max_length=255)
     nationality = models.ForeignKey('Country', on_delete=models.CASCADE, related_name='nationality')
     bank = models.CharField(max_length=255)
@@ -135,31 +120,48 @@ class LandLord(models.Model):
     representative = models.CharField(max_length=255, blank=True)
     managed_by = models.ForeignKey('Organisation', on_delete=models.CASCADE, default=2)
     date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    is_active = models.BooleanField(default=True)
 
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse_lazy('manager:landlord_detail', kwargs={'pk': self.pk})
+
 
 class Property(models.Model):
     """Property Instance, can be a building, land, land and building"""
-    property_type = models.CharField(max_length=20, choices=PROPERTY_TYPES)
+    property_type = models.CharField(max_length=55, choices=settings.PROPERTY_TYPES)
     organisation_managing = models.ForeignKey('Organisation', on_delete=models.CASCADE)
     land_lord = models.ForeignKey('LandLord', on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
-    property_value = models.DecimalField(max_digits=15, decimal_places=3, blank=True)
+    property_value = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     country = models.ForeignKey('Country', on_delete=models.CASCADE)
     description = models.TextField()
-    lot_size = models.DecimalField(max_digits=15, decimal_places=3,)
-    building_size = models.DecimalField(max_digits=15, decimal_places=3,)
-    date_added = models.DateTimeField(auto_now=True)
-    last_updated = models.DateTimeField(blank=True)
+    lot_size = models.DecimalField(max_digits=15, decimal_places=3, default=0.00)
+    building_size = models.DecimalField(max_digits=15, decimal_places=3, default=0.00)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
-    details = models.TextField(blank=True)
+    geographic_location = models.CharField(max_length=255, blank=True, null=True)
+    first_erected_date = models.DateField(blank=True, null=True)
+    property_acquired_date = models.DateField(blank=True, null=True)
+    acquisition_cost = models.DecimalField(max_digits=15, decimal_places=2, blank=True, default=0.00)
+    management_started_date = models.DateField(blank=True, null=True)
+    management_stopped_date = models.DateField(blank=True, null=True)
+    property_disposed_date = models.DateField(blank=True, null=True)
+    selling_price = models.DecimalField(max_digits=15, decimal_places=2, blank=True, default=0.00)
+    zone = models.CharField(max_length=255, blank=True, null=True)
+    details = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse_lazy('manager:property_detail', kwargs={'pk': self.pk})
 
 
 class PropertyUnit(models.Model):
@@ -183,7 +185,7 @@ class Tenant(models.Model):
     name = models.CharField(max_length=255)
     property_unit = models.ForeignKey('PropertyUnit', on_delete=models.CASCADE)
     date_of_occupancy = models.DateField()
-    identification_type = models.CharField(max_length=55, choices=ID_TYPES)
+    identification_type = models.CharField(max_length=55, choices=settings.ID_TYPES)
     identification = models.CharField(max_length=255)
     email = models.EmailField()
     contact_address = models.CharField(max_length=255)

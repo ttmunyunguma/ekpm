@@ -1,3 +1,4 @@
+geopy
 beautifulsoup4==4.8.1
 Django==2.2.6
 django-bootstrap4==1.0.1

@@ -1,17 +1,25 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
-from manager.forms import LandLordForm, PropertyForm
-from manager.models import LandLord, PropertyManager, Property
+from manager.forms import LandLordForm, PropertyForm, PropertyUnitForm
+from manager.models import LandLord, PropertyManager, Property, PropertyUnit
 
 
-class PortalHomeView(TemplateView):
+class LoginRequiredMixin(object):
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(LoginRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+
+class PortalHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'manager/index.html'
 
 
-class LandLordCreateView(CreateView):
+class LandLordCreateView(LoginRequiredMixin, CreateView):
     form_class = LandLordForm
     template_name = 'manager/landlords_create.html'
 
@@ -22,7 +30,7 @@ class LandLordCreateView(CreateView):
         return super(LandLordCreateView, self).form_valid(form)
 
 
-class LandLordListView(ListView):
+class LandLordListView(LoginRequiredMixin, ListView):
     model = LandLord
     paginate_by = 10
     template_name = 'manager/landlords_list.html'
@@ -48,19 +56,19 @@ class LandLordListView(ListView):
         return context
 
 
-class LandLordDetailView(DetailView):
+class LandLordDetailView(LoginRequiredMixin, DetailView):
     model = LandLord
     context_object_name = 'landlord'
     template_name = 'manager/landlords_detail.html'
 
 
-class LandLordUpdateView(UpdateView):
+class LandLordUpdateView(LoginRequiredMixin, UpdateView):
     form_class = LandLordForm
     template_name = 'manager/landlords_create.html'
     model = LandLord
 
 
-class PropertyCreateView(CreateView):
+class PropertyCreateView(LoginRequiredMixin, CreateView):
     form_class = PropertyForm
     template_name = 'manager/property_create.html'
 
@@ -76,7 +84,7 @@ class PropertyCreateView(CreateView):
         return super(PropertyCreateView, self).form_valid(form)
 
 
-class PropertyListView(ListView):
+class PropertyListView(LoginRequiredMixin, ListView):
     model = Property
     paginate_by = 10
     template_name = 'manager/property_list.html'
@@ -102,13 +110,13 @@ class PropertyListView(ListView):
         return context
 
 
-class PropertyDetailView(DetailView):
+class PropertyDetailView(LoginRequiredMixin, DetailView):
     model = Property
     context_object_name = 'property'
     template_name = 'manager/property_detail.html'
 
 
-class PropertyUpdateView(UpdateView):
+class PropertyUpdateView(LoginRequiredMixin, UpdateView):
     form_class = PropertyForm
     template_name = 'manager/property_create.html'
     model = Property
@@ -117,3 +125,52 @@ class PropertyUpdateView(UpdateView):
         kwargs = super(PropertyUpdateView, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
         return kwargs
+
+
+class PropertyUnitListView(LoginRequiredMixin, ListView):
+    model = PropertyUnit
+    paginate_by = 10
+    template_name = 'manager/property_unit_list.html'
+    context_object_name = 'units'
+
+    def get_queryset(self, *args, **kwargs):
+        query = super(PropertyUnitListView, self).get_queryset().filter(
+            property_id=self.kwargs.get('prop')
+        ).order_by('id')
+        self.request.session['prop'] = self.kwargs.get('prop')
+        return query
+
+    def get_context_data(self, **kwargs):
+        context = super(PropertyUnitListView, self).get_context_data(**kwargs)
+        context['prop'] = self.kwargs.get('prop')
+        context['property'] = Property.objects.get(id=self.kwargs.get('prop'))
+        return context
+
+
+class PropertyUnitCreateView(LoginRequiredMixin, CreateView):
+    form_class = PropertyUnitForm
+    template_name = 'manager/property_unit_create.html'
+
+    def form_valid(self, form, **kwargs):
+        form.instance.property = Property.objects.get(id=self.kwargs.get('prop'))
+        return super(PropertyUnitCreateView, self).form_valid(form)
+
+
+class PropertyUnitDetailView(LoginRequiredMixin, DetailView):
+    model = PropertyUnit
+    context_object_name = 'unit'
+    template_name = 'manager/property_unit_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PropertyUnitDetailView, self).get_context_data(**kwargs)
+        context['prop'] = self.request.session.get('prop')
+        return context
+
+
+class PropertyUnitUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = PropertyUnitForm
+    template_name = 'manager/property_unit_create.html'
+    model = PropertyUnit
+
+
+

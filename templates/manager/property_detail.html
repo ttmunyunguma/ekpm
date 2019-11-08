@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 {% block title %}
-    eKPM Portal | Land Lord
+    eKPM Portal | Property
 {% endblock %}
 
 {% block content %}
@@ -154,10 +154,9 @@
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Rentable Units:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <a id="j_idt182"
-                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only cyan-btn"
-                           type="button"><span
-                                class="ui-button-text ui-c">View Available Units</span></a>
+                            <a id="j_idt182" href="{% url 'manager:property_units' prop=property.pk %}"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only cyan-btn">
+                                <span class="ui-button-text ui-c">View Available Units</span></a>
                         </td>
                     </tr>
                     </tbody>

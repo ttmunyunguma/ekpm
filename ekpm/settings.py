@@ -156,6 +156,7 @@ PROPERTY_TYPES = [
     ('Commercial', 'Commercial'),
     ('Agricultural', 'Agricultural'),
     ('Land', 'Land'),
+    ('Retail', 'Retail'),
     ('Other', 'Other'),
 ]
 

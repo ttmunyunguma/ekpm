@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}
+    eKPM Portal | Property Unit
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="card">
+                <h1>Unit: {{ unit.unit_name }}</h1>
+                <table id="form:j_idt112:0:j_idt113"
+                       class="ui-panelgrid ui-widget ui-panelgrid-blank" style="width:100%"
+                       role="grid">
+                    <thead class="ui-panelgrid-header">
+                    <tr class="ui-widget-header" role="row">
+                        <td colspan="2" role="columnheader"
+                            class="ui-panelgrid-cell ui-widget-header">
+                            <h1 id="form:j_idt112:0:j_idt114" style="display:inline-block;margin-bottom:15px">
+                                Details
+                            </h1>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Property:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700">{{ unit.property }}</span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Unit name:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ unit.unit_name }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Is Vacant?:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ unit.is_vacant }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Max Number of Tenants:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ unit.max_number_of_tenants }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Rental Value:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ unit.rental_value }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Service Fees:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ unit.service_fees }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Date Created:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ unit.date_created }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Extra Details:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ unit.details }} </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="ui-g">
+                    <div>
+                        <a id="j_idt180" href="{% url 'manager:property_units_update' pk=unit.pk prop=prop %}"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn"
+                           style="margin-bottom:10px; margin-top: 10px" type="button"><span
+                                class="ui-button-text ui-c">Update</span></a>
+                        <script id="j_idt180_s"
+                                type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt180", {id: "j_idt180"});</script>
+
+                        <a id="j_idt182"
+                           class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only red-btn"
+                           style="margin-bottom:10px; margin-top: 10px" type="button"><span
+                                class="ui-button-text ui-c">Delete</span></a>
+                        <script id="j_idt182_s"
+                                type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt182", {id: "j_idt182"});</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

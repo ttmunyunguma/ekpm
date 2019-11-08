@@ -165,20 +165,23 @@ class Property(models.Model):
 
 
 class PropertyUnit(models.Model):
-    """Single Apartments in an Apartment building or Floors in an office building: single rental entities"""
+    """Single Apartments in an Apartment building or Floors in an office building: single rentable entities"""
     property = models.ForeignKey('Property', on_delete=models.CASCADE)
     unit_name = models.CharField(max_length=255)
     is_vacant = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     max_number_of_tenants = models.IntegerField(default=1)
-    rental_value = models.DecimalField(max_digits=15, decimal_places=3,)
-    service_fees = models.DecimalField(max_digits=15, decimal_places=3,)
-    date_added = models.DateTimeField(auto_now=True)
-    last_updated = models.DateTimeField(blank=True)
+    rental_value = models.DecimalField(max_digits=15, decimal_places=2,)
+    service_fees = models.DecimalField(max_digits=15, decimal_places=2,)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
     details = models.TextField(blank=True)
 
     def __str__(self):
         return self.unit_name
+
+    def get_absolute_url(self):
+        return reverse_lazy('manager:property_units_detail', kwargs={'pk': self.pk, 'prop': self.property_id})
 
 
 class Tenant(models.Model):

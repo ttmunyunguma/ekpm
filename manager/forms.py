@@ -1,32 +1,36 @@
 from django import forms
 from geopy.exc import GeocoderServiceError
 from geopy.geocoders import Nominatim, ArcGIS
-from manager.models import LandLord, Property, PropertyManager, PropertyUnit, Premise
+from manager.models import LandLord, Property, PropertyManager, PropertyUnit, Premise, Tenant
+from django.utils.translation import ugettext_lazy as _
+
+text_input_style = 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'
+text_area_style = 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'
 
 
 class LandLordForm(forms.ModelForm):
     name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     phone = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     address = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     city = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     identification = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     bank = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     bank_branch = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     bank_account_number = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     details = forms.CharField(
         widget=forms.Textarea(
-            attrs={'class': 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'}), required=False)
+            attrs={'class': text_area_style}), required=False)
     representative = forms.CharField(
         widget=forms.TextInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}), required=False)
+            attrs={'class': text_input_style}), required=False)
 
     class Meta:
         model = LandLord
@@ -58,49 +62,49 @@ class PropertyForm(forms.ModelForm):
                                              widget=forms.SelectDateWidget(years=range(1900, 2100)), required=False)
     title = forms.CharField(
         label='Property Title*', widget=forms.TextInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+            attrs={'class': text_input_style}))
     property_value = forms.DecimalField(
         max_digits=15, decimal_places=2, initial=0.00, label='Property Value($)',
         widget=forms.NumberInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all', }))
+            attrs={'class': text_input_style, }))
     address = forms.CharField(
         label='Address*',
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     city = forms.CharField(
         label='City*',
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     description = forms.CharField(
         label='Property Description',
         widget=forms.Textarea(
-            attrs={'class': 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'}))
+            attrs={'class': text_area_style}))
     lot_size = forms.DecimalField(
         label='Lot Size(sqmts)',
         max_digits=15, decimal_places=3, initial=0.000,
         widget=forms.NumberInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all', }))
+            attrs={'class': text_input_style, }))
     building_size = forms.DecimalField(
         label='Building Size(sqmts)',
         max_digits=15, decimal_places=3, initial=0.000,
         widget=forms.NumberInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all', }))
+            attrs={'class': text_input_style, }))
     acquisition_cost = forms.DecimalField(
         label='Acquisition Cost($)',
         max_digits=15, decimal_places=2, initial=0.00,
         widget=forms.NumberInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all', }))
+            attrs={'class': text_input_style, }))
     selling_price = forms.DecimalField(
         label='Selling Price($)',
         max_digits=15, decimal_places=2, initial=0.00,
         widget=forms.NumberInput(attrs={
-            'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+            'class': text_input_style}))
     zone = forms.CharField(
         label='Property Zone',
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}),
+        widget=forms.TextInput(attrs={'class': text_input_style}),
         required=False)
     details = forms.CharField(
         label='Extra Details',
         widget=forms.Textarea(
-            attrs={'class': 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'}), required=False)
+            attrs={'class': text_area_style}), required=False)
 
     class Meta:
         model = Property
@@ -127,16 +131,16 @@ class PropertyForm(forms.ModelForm):
 class PropertyUnitForm(forms.ModelForm):
     unit_title = forms.CharField(
         label='Unit Title*',
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     total_area = forms.DecimalField(
         label='Total Area(sqmts)*',
         max_digits=15, decimal_places=3, initial=0.000,
         widget=forms.NumberInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+            attrs={'class': text_input_style}))
     details = forms.CharField(
         label='Unit Details',
         widget=forms.Textarea(
-            attrs={'class': 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'}), required=False)
+            attrs={'class': text_area_style}), required=False)
 
     class Meta:
         model = PropertyUnit
@@ -146,18 +150,29 @@ class PropertyUnitForm(forms.ModelForm):
 class PremiseForm(forms.ModelForm):
     premise_title = forms.CharField(
         label='Premise Title*',
-        widget=forms.TextInput(attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+        widget=forms.TextInput(attrs={'class': text_input_style}))
     total_area = forms.DecimalField(
         label='Total Area(sqmts)*',
         max_digits=15, decimal_places=3, initial=0.000,
         widget=forms.NumberInput(
-            attrs={'class': 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'}))
+            attrs={'class': text_input_style}))
     details = forms.CharField(
         label='Unit Details',
         widget=forms.Textarea(
-            attrs={'class': 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'}), required=False)
+            attrs={'class': text_area_style}), required=False)
 
     class Meta:
         model = Premise
         exclude = ['property', 'date_created', 'last_updated', 'is_active']
+
+
+class TenantForm(forms.ModelForm):
+    class Meta:
+        model = Tenant
+        exclude = ['property', 'date_created', 'last_updated', 'is_active']
+        labels = {
+            'tenant_name': _('Tenant Name'),
+        }
+
+
 

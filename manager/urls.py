@@ -30,6 +30,7 @@ urlpatterns = [
     path('properties/<int:prop>/premises/<int:pk>/update/', views.PropertyPremiseUpdateView.as_view(),
          name='property_premises_update'),
     # Tenants
-
+    path('properties/<int:prop>/tenants/', views.TenantListView.as_view(), name='property_tenants'),
+    path('properties/<int:prop>/tenants/new/', views.TenantCreateView.as_view(), name='property_tenant_new')
 
 ]

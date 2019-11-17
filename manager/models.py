@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.urls import reverse_lazy
+from django.utils.translation import ugettext_lazy as _
 
 
 class Country(models.Model):
@@ -202,15 +203,62 @@ class Premise(models.Model):
 
 
 class Tenant(models.Model):
-    name = models.CharField(max_length=255)
+    tenant_name = models.CharField(max_length=255)
+    trading_as_list_name = models.CharField(max_length=255)
     property = models.ForeignKey('Property', on_delete=models.CASCADE)
     identification_type = models.CharField(max_length=55, choices=settings.ID_TYPES)
     identification = models.CharField(max_length=255)
-    email = models.EmailField()
-    contact_address = models.CharField(max_length=255)
+    email_1 = models.EmailField()
+    email_2 = models.EmailField(blank=True, null=True)
+    phone_1 = models.CharField(max_length=20)
+    phone_2 = models.CharField(max_length=20, blank=True, null=True)
+    postal_address = models.TextField()
+    domicile_address = models.TextField()
     nationality = models.ForeignKey('Country', on_delete=models.CASCADE)
-    tenant_representative = models.CharField(max_length=255, blank=True)
     details = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return self.tenant_name
+
+
+class Lease(models.Model):
+    tenant_lessee = models.OneToOneField('Tenant', on_delete=models.CASCADE)
+    tenant_representative = models.CharField(max_length=255, blank=True, null=True)
+    tenant_representative_capacity = models.CharField(max_length=255, blank=True, null=True)
+    owner_lessor = models.ForeignKey('LandLord', on_delete=models.CASCADE)
+    owner_representative = models.CharField(max_length=255, blank=True, null=True)
+    owner_representative_capacity = models.CharField(max_length=255, blank=True, null=True)
+    organization_managing = models.ForeignKey('Organisation', on_delete=models.CASCADE)
+    created_by_manager = models.ForeignKey('PropertyManager', on_delete=models.DO_NOTHING)
+    premises = models.OneToOneField('Premise', on_delete=models.CASCADE, blank=True, null=True)
+    property_unit = models.OneToOneField('PropertyUnit', on_delete=models.CASCADE, blank=True, null=True)
+    lease_starts = models.DateField()
+    occupation_date = models.DateField()
+    lease_ends = models.DateField(blank=True, null=True)
+    lease_indefinite_thereafter = models.BooleanField(default=False)
+    rent_review_date = models.DateField()
+    annual_rent_review_date = models.DateField()
+    rent_review_notes = models.TextField()
+    monthly_rent_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    monthly_rate = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    escalation_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+    recovery_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
+    monthly_recovery_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    recovery_notes = models.TextField()
+    cash_deposit_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    bank_guarantee_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    deposit_notes = models.TextField()
+    lease_documentation_fee = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    late_payment_interest_percentage = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
+    is_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.tenant_lessee.tenant_name
+
+
+

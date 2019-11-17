@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    eKPM Portal | Tenants
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="card no-margin">
+                <h1>Tenants on: {{ property.title }}</h1>
+                <div id="form:j_idt47" class="ui-datatable ui-widget ui-datatable-reflow">
+                    <div class="ui-datatable-header ui-widget-header ui-corner-top">
+                        Tenants
+                        <span style="padding-left: 10px">
+                            <a id="j_idt182" href="{% url 'manager:property_tenant_new' prop=prop %}"
+                               class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn">
+                                <span class="ui-button-text ui-c">Add New</span></a>
+                        </span>
+                    </div>
+                    <div id="form:j_idt47_paginator_top" class="ui-paginator ui-paginator-top ui-widget-header"
+                         role="navigation" aria-label="Pagination">
+                        <a href="#" class="ui-paginator-first ui-state-default ui-corner-all ui-state-disabled"
+                           aria-label="First Page" tabindex="-1"><span class="ui-icon ui-icon-seek-first">F</span></a>
+                        <a href="#" class="ui-paginator-prev ui-state-default ui-corner-all ui-state-disabled"
+                           aria-label="Previous Page" tabindex="-1"><span class="ui-icon ui-icon-seek-prev">P</span></a><span
+                            class="ui-paginator-pages"><a
+                            class="ui-paginator-page ui-state-default ui-state-active ui-corner-all" tabindex="0"
+                            href="#">1</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0"
+                                             href="#">2</a><a
+                            class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">3</a><a
+                            class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">4</a><a
+                            class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0"
+                            href="#">5</a></span><a
+                            href="#" class="ui-paginator-next ui-state-default ui-corner-all" aria-label="Next Page"
+                            tabindex="0"><span class="ui-icon ui-icon-seek-next">N</span></a><a href="#"
+                                                                                                class="ui-paginator-last ui-state-default ui-corner-all"
+                                                                                                aria-label="Last Page"
+                                                                                                tabindex="0"><span
+                            class="ui-icon ui-icon-seek-end">E</span></a></div>
+
+                    <div class="ui-datatable-tablewrapper">
+                        <table role="grid">
+                            <thead id="form:j_idt47_head">
+                            <tr role="row">
+                                <th id="form:j_idt47:j_idt49" class="ui-state-default ui-sortable-column"
+                                    role="columnheader" aria-label="Id" scope="col">
+                                    <span class="ui-column-title">Property</span>
+                                    <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+                                </th>
+                                <th id="form:j_idt47:j_idt51" class="ui-state-default ui-sortable-column"
+                                    role="columnheader" aria-label="Year" scope="col">
+                                    <span class="ui-column-title">Tenant Name</span>
+                                    <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+                                </th>
+                                <th id="form:j_idt47:j_idt53" class="ui-state-default ui-sortable-column"
+                                    role="columnheader" aria-label="Brand" scope="col">
+                                    <span class="ui-column-title">Trading As / List Name</span>
+                                    <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
+                                </th>
+                                <th id="form:j_idt47:j_idt55" class="ui-state-default ui-sortable-column"
+                                    role="columnheader" aria-label="Color" scope="col">
+                                    <span class="ui-column-title">Actions</span>
+                                </th>
+                            </tr>
+                            </thead>
+
+                            <tbody id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
+                            {% for tenant in tenants %}
+                                <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
+                                    role="row" onclick=""
+                                    aria-selected="false">
+                                    <td role="gridcell">{{ tenant.property }}</td>
+                                    <td role="gridcell">{{ tenant.tenant_name }}</td>
+                                    <td role="gridcell">{{ tenant.trading_as_list_name }}</td>
+                                    <td role="gridcell">
+                                        <a class="btn btn-block"
+                                           href="{{ tenant.get_absolute_url }}">
+                                            <span title="View Details" class="fa fa-eye"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <input type="hidden" id="Url" data-url="#"/>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="form:j_idt47_paginator_bottom"
+                         class="ui-paginator ui-paginator-bottom ui-widget-header ui-corner-bottom" role="navigation"
+                         aria-label="Pagination"><a href="#"
+                                                    class="ui-paginator-first ui-state-default ui-corner-all ui-state-disabled"
+                                                    aria-label="First Page" tabindex="-1"><span
+                            class="ui-icon ui-icon-seek-first">F</span></a><a href="#"
+                                                                              class="ui-paginator-prev ui-state-default ui-corner-all ui-state-disabled"
+                                                                              aria-label="Previous Page"
+                                                                              tabindex="-1"><span
+                            class="ui-icon ui-icon-seek-prev">P</span></a><span class="ui-paginator-pages"><a
+                            class="ui-paginator-page ui-state-default ui-state-active ui-corner-all" tabindex="0"
+                            href="#">1</a><a class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0"
+                                             href="#">2</a><a
+                            class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">3</a><a
+                            class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0" href="#">4</a><a
+                            class="ui-paginator-page ui-state-default ui-corner-all" tabindex="0"
+                            href="#">5</a></span><a
+                            href="#" class="ui-paginator-next ui-state-default ui-corner-all" aria-label="Next Page"
+                            tabindex="0"><span class="ui-icon ui-icon-seek-next">N</span></a><a href="#"
+                                                                                                class="ui-paginator-last ui-state-default ui-corner-all"
+                                                                                                aria-label="Last Page"
+                                                                                                tabindex="0"><span
+                            class="ui-icon ui-icon-seek-end">E</span></a></div>
+
+                    <input type="hidden" id="form:j_idt47_selection" name="form:j_idt47_selection" autocomplete="off"
+                           value=""/></div>
+                <script id="form:j_idt47_s" type="text/javascript">$(function () {
+                    PrimeFaces.cw("DataTable", "widget_form_j_idt47", {
+                        id: "form:j_idt47",
+                        paginator: {
+                            id: ['form:j_idt47_paginator_top', 'form:j_idt47_paginator_bottom'],
+                            rows: 10,
+                            rowCount: 50,
+                            page: 0,
+                            currentPageTemplate: '({currentPage} of {totalPages})'
+                        },
+                        selectionMode: "single",
+                        reflow: true,
+                        groupColumnIndexes: []
+                    });
+                });</script>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

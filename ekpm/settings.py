@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -142,26 +143,26 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Platform Constants
 ID_TYPES = [
-    ('National ID', 'National ID'),
-    ('Passport', 'Passport'),
-    ('Drivers License', 'Drivers License'),
-    ('Company Tax Clearance', 'Company Tax Clearance'),
-    ('Other', 'Other'),
+    (_('National ID'), _('National ID')),
+    (_('Passport'), _('Passport')),
+    (_('Drivers License'), _('Drivers License')),
+    (_('Company Tax Clearance'), _('Company Tax Clearance')),
+    (_('Other'), _('Other')),
 ]
 PROPERTY_TYPES = [
-    ('Residential', 'Residential'),
-    ('Apartment Building', 'Apartment Building'),
-    ('Industrial', 'Industrial'),
-    ('Commercial', 'Commercial'),
-    ('Agricultural', 'Agricultural'),
-    ('Land', 'Land'),
-    ('Retail', 'Retail'),
-    ('Other', 'Other'),
+    (_('Residential'), _('Residential')),
+    (_('Apartment Building'), _('Apartment Building')),
+    (_('Industrial'), _('Industrial')),
+    (_('Commercial'), _('Commercial')),
+    (_('Agricultural'), _('Agricultural')),
+    (_('Land'), _('Land')),
+    (_('Retail'), _('Retail')),
+    (_('Other'), _('Other')),
 ]
 ACCOMMODATION_TYPES = [
-    ('Offices', 'Offices'),
-    ('Parking', 'Parking'),
-    ('Retail', 'Retail'),
-    ('Houses', 'Houses'),
+    (_('Offices'), _('Offices')),
+    (_('Parking'), _('Parking')),
+    (_('Retail'), _('Retail')),
+    (_('Houses'), _('Houses')),
 ]
 

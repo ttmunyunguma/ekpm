@@ -1,0 +1,36 @@
+{% csrf_token %}
+{% for errors in form.non_field.errors %}
+    <p style="color: red">{{ errors }}</p>
+{% endfor %}
+{% for field in form %}
+    <div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+        <label class="ui-outputlabel ui-widget"
+               for="{{ field.id_for_label }}">{{ field.label }}:</label>
+    </div>
+    <div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+        {{ field }}
+        <script type="text/javascript">
+            PrimeFaces.cw("InputText", "widget_{{ field.id_for_label }}", {id: "{{ field.id_for_label }}"});
+        </script>
+    </div>
+    {% if field.help_text %}
+        <p style="color: purple">{{ field.help_text }}</p>
+    {% endif %}
+
+    {% for error in field.errors %}
+        <p style="color: red">{{ error }}</p>
+    {% endfor %}
+{% endfor %}
+<div class="ui-panelgrid-cell ui-g-12 ui-md-12">
+    <button id="j_idt180" name="j_idt180"
+            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn"
+            style="margin-bottom:10px;" type="submit"><span
+            class="ui-button-text ui-c">SAVE</span></button>
+    <script id="j_idt180_s"
+            type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt180", {id: "j_idt180"});</script>
+    <a id="j_idt185" href="../" style="margin-bottom:10px;"
+       class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only indigo-btn">
+        <span class="ui-button-text ui-c">Cancel</span></a>
+    <script id="j_idt185_s"
+            type="text/javascript">PrimeFaces.cw("CommandButton", "widget_j_idt185", {id: "j_idt185"});</script>
+</div>

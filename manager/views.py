@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
-from manager.forms import LandLordForm, PropertyForm, PropertyUnitForm, PremiseForm
-from manager.models import LandLord, PropertyManager, Property, PropertyUnit, Premise
+from manager.forms import LandLordForm, PropertyForm, PropertyUnitForm, PremiseForm, TenantForm
+from manager.models import LandLord, PropertyManager, Property, PropertyUnit, Premise, Tenant
 
 
 class LoginRequiredMixin(object):
@@ -242,3 +242,38 @@ class PropertyPremiseUpdateView(LoginRequiredMixin, UpdateView):
         context['prop'] = self.request.session.get('prop')
         return context
 
+
+class TenantListView(LoginRequiredMixin, ListView):
+    model = Tenant
+    paginate_by = 10
+    template_name = 'manager/tenant_list.html'
+    context_object_name = 'tenants'
+
+    def get_queryset(self, *args, **kwargs):
+        query = super(TenantListView, self).get_queryset().filter(
+            property_id=self.kwargs.get('prop'),
+            is_active=True
+        ).order_by('id')
+        self.request.session['prop'] = self.kwargs.get('prop')
+        return query
+
+    def get_context_data(self, **kwargs):
+        context = super(TenantListView, self).get_context_data(**kwargs)
+        context['prop'] = self.kwargs.get('prop')
+        context['property'] = Property.objects.get(id=self.kwargs.get('prop'))
+        return context
+
+
+class TenantCreateView(LoginRequiredMixin, CreateView):
+    form_class = TenantForm
+    template_name = 'manager/tenant_create.html'
+
+    def form_valid(self, form, **kwargs):
+        form.instance.property = Property.objects.get(id=self.kwargs.get('prop'))
+        return super(TenantCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        print(self.request.session)
+        context = super(TenantCreateView, self).get_context_data(**kwargs)
+        context['prop'] = self.request.session.get('prop')
+        return context

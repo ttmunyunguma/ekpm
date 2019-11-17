@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    eKPM Portal | Property Unit
+    eKPM Portal | Premise
 {% endblock %}
 
 {% block content %}
@@ -9,10 +9,10 @@
     <div class="ui-g ui-fluid">
         <div class="ui-g-12">
             <div class="card card-w-title">
-                <h1>Property Unit</h1>
+                <h1>Premise</h1>
                 <div class="ui-g ui-fluid">
                     <div>
-                        <form method="POST" action="{% url 'manager:property_units_new' prop=prop %}" class="ui-g-12">
+                        <form method="POST" action="{% url 'manager:property_premises_new' prop=prop %}" class="ui-g-12">
                             {% csrf_token %}
                             {% for errors in form.non_field.errors %}
                                 <p style="color: red">{{ errors }}</p>

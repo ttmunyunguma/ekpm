@@ -151,7 +151,6 @@ ID_TYPES = [
 PROPERTY_TYPES = [
     ('Residential', 'Residential'),
     ('Apartment Building', 'Apartment Building'),
-    ('Office Building', 'Office Building'),
     ('Industrial', 'Industrial'),
     ('Commercial', 'Commercial'),
     ('Agricultural', 'Agricultural'),
@@ -159,5 +158,10 @@ PROPERTY_TYPES = [
     ('Retail', 'Retail'),
     ('Other', 'Other'),
 ]
-
+ACCOMMODATION_TYPES = [
+    ('Offices', 'Offices'),
+    ('Parking', 'Parking'),
+    ('Retail', 'Retail'),
+    ('Houses', 'Houses'),
+]
 

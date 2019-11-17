@@ -141,19 +141,19 @@ class Property(models.Model):
     city = models.CharField(max_length=255)
     country = models.ForeignKey('Country', on_delete=models.CASCADE)
     description = models.TextField()
-    lot_size = models.DecimalField(max_digits=15, decimal_places=3, default=0.00)
-    building_size = models.DecimalField(max_digits=15, decimal_places=3, default=0.00)
+    lot_size = models.DecimalField(max_digits=15, decimal_places=3, default=0.000)
+    building_size = models.DecimalField(max_digits=15, decimal_places=3, default=0.000)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     geographic_location = models.CharField(max_length=255, blank=True, null=True)
     first_erected_date = models.DateField(blank=True, null=True)
     property_acquired_date = models.DateField(blank=True, null=True)
-    acquisition_cost = models.DecimalField(max_digits=15, decimal_places=2, blank=True, default=0.00)
+    acquisition_cost = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     management_started_date = models.DateField(blank=True, null=True)
     management_stopped_date = models.DateField(blank=True, null=True)
     property_disposed_date = models.DateField(blank=True, null=True)
-    selling_price = models.DecimalField(max_digits=15, decimal_places=2, blank=True, default=0.00)
+    selling_price = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     zone = models.CharField(max_length=255, blank=True, null=True)
     details = models.TextField(blank=True, null=True)
 
@@ -165,29 +165,45 @@ class Property(models.Model):
 
 
 class PropertyUnit(models.Model):
-    """Single Apartments in an Apartment building or Floors in an office building: single rentable entities"""
+    """Parking Units, Clustered Property Single Rentable Units"""
     property = models.ForeignKey('Property', on_delete=models.CASCADE)
-    unit_name = models.CharField(max_length=255)
+    unit_title = models.CharField(max_length=255)
+    total_area = models.DecimalField(max_digits=15, decimal_places=3, default=0.000)
     is_vacant = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
-    max_number_of_tenants = models.IntegerField(default=1)
-    rental_value = models.DecimalField(max_digits=15, decimal_places=2,)
-    service_fees = models.DecimalField(max_digits=15, decimal_places=2,)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
     details = models.TextField(blank=True)
 
     def __str__(self):
-        return self.unit_name
+        return self.unit_title
 
     def get_absolute_url(self):
         return reverse_lazy('manager:property_units_detail', kwargs={'pk': self.pk, 'prop': self.property_id})
 
 
+class Premise(models.Model):
+    """Single Apartments in an Apartment building or Floors in an office building: single rentable entities"""
+    property = models.ForeignKey('Property', on_delete=models.CASCADE)
+    premise_title = models.CharField(max_length=255)
+    accommodation_type = models.CharField(choices=settings.ACCOMMODATION_TYPES, max_length=55)
+    total_area = models.DecimalField(max_digits=15, decimal_places=3, default=0.000)
+    is_vacant = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
+    details = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.premise_title
+
+    def get_absolute_url(self):
+        return reverse_lazy('manager:property_premises_detail', kwargs={'pk': self.pk, 'prop': self.property_id})
+
+
 class Tenant(models.Model):
     name = models.CharField(max_length=255)
-    property_unit = models.ForeignKey('PropertyUnit', on_delete=models.CASCADE)
-    date_of_occupancy = models.DateField()
+    property = models.ForeignKey('Property', on_delete=models.CASCADE)
     identification_type = models.CharField(max_length=55, choices=settings.ID_TYPES)
     identification = models.CharField(max_length=255)
     email = models.EmailField()

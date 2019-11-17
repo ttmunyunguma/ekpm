@@ -15,12 +15,12 @@
                         <form method="POST" action="{% url 'manager:landlords_new' %}" class="ui-g-12">
                             {% csrf_token %}
                             {% for errors in form.non_field.errors %}
-                                <p class="text-danger">{{ errors }}</p>
+                                <p style="color: red">{{ errors }}</p>
                             {% endfor %}
                             {% for field in form %}
                                 <div class="ui-panelgrid-cell ui-g-12 ui-md-12">
                                     <label class="ui-outputlabel ui-widget"
-                                           for="{{ field.id_for_label }}">{{ field.name|upper }}:</label>
+                                           for="{{ field.id_for_label }}">{{ field.label }}:</label>
                                 </div>
                                 <div class="ui-panelgrid-cell ui-g-12 ui-md-12">
                                     {{ field }}
@@ -29,11 +29,11 @@
                                     </script>
                                 </div>
                                 {% if field.help_text %}
-                                    <p class="text-success">{{ field.help_text }}</p>
+                                    <p style="color: purple">{{ field.help_text }}</p>
                                 {% endif %}
 
                                 {% for error in field.errors %}
-                                    <p class="text-danger">{{ error }}</p>
+                                    <p style="color: red">{{ error }}</p>
                                 {% endfor %}
                             {% endfor %}
                             <div class="ui-panelgrid-cell ui-g-12 ui-md-12">

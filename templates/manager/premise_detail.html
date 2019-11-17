@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    eKPM Portal | Property Unit
+    eKPM Portal | Premise
 {% endblock %}
 
 {% block content %}
@@ -9,7 +9,7 @@
     <div class="ui-g">
         <div class="ui-g-12">
             <div class="card">
-                <h1>Unit: {{ unit.unit_title }}</h1>
+                <h1>Premise: {{ premise.premise_title }}</h1>
                 <table id="form:j_idt112:0:j_idt113"
                        class="ui-panelgrid ui-widget ui-panelgrid-blank" style="width:100%"
                        role="grid">
@@ -27,44 +27,50 @@
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Property:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700">{{ unit.property }}</span>
+                            <span style="font-weight:700">{{ premise.property }}</span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Unit Title:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Premise Title:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ unit.unit_title }} </span>
+                            <span style="font-weight:700"> {{ premise.premise_title }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Accomodation Type:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ premise.accommodation_type }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Is Vacant?:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ unit.is_vacant }} </span>
+                            <span style="font-weight:700"> {{ premise.is_vacant }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Total Area:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ unit.total_area }}(sqmts) </span>
+                            <span style="font-weight:700"> {{ premise.total_area }}(sqmts) </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Date Created:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ unit.date_created }} </span>
+                            <span style="font-weight:700"> {{ premise.date_created }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Extra Details:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ unit.details }} </span>
+                            <span style="font-weight:700"> {{ premise.details }} </span>
                         </td>
                     </tr>
                     </tbody>
                 </table>
                 <div class="ui-g">
                     <div>
-                        <a id="j_idt180" href="{% url 'manager:property_units_update' pk=unit.pk prop=prop %}"
+                        <a id="j_idt180" href="{% url 'manager:property_premises_update' pk=premise.pk prop=prop %}"
                            class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn"
                            style="margin-bottom:10px; margin-top: 10px" type="button"><span
                                 class="ui-button-text ui-c">Update</span></a>

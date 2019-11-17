@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             name='PropertyUnit',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('unit_name', models.CharField(max_length=255)),
+                ('unit_title', models.CharField(max_length=255)),
                 ('is_vacant', models.BooleanField(default=True)),
                 ('is_active', models.BooleanField(default=True)),
                 ('max_number_of_tenants', models.IntegerField(default=1)),

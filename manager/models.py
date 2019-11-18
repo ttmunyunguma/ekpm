@@ -3,8 +3,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from django.db.models.signals import post_save
+from django.http import request
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
+from django.dispatch import receiver
 
 
 class Country(models.Model):
@@ -213,19 +216,23 @@ class Tenant(models.Model):
     phone_1 = models.CharField(max_length=20)
     phone_2 = models.CharField(max_length=20, blank=True, null=True)
     postal_address = models.TextField()
-    domicile_address = models.TextField()
+    domicile_address = models.TextField(blank=True, null=True)
     nationality = models.ForeignKey('Country', on_delete=models.CASCADE)
     details = models.TextField(blank=True)
     is_active = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
+    lease = models.OneToOneField('Lease', on_delete=models.CASCADE, related_name=_('lease'), blank=True, null=True)
 
     def __str__(self):
         return self.tenant_name
 
+    def get_absolute_url(self):
+        return reverse_lazy('manager:property_tenant_detail', kwargs={'pk': self.pk, 'prop': self.property_id})
+
 
 class Lease(models.Model):
-    tenant_lessee = models.OneToOneField('Tenant', on_delete=models.CASCADE)
+    tenant_lessee = models.OneToOneField('Tenant', on_delete=models.CASCADE, related_name=_('tenant'))
     tenant_representative = models.CharField(max_length=255, blank=True, null=True)
     tenant_representative_capacity = models.CharField(max_length=255, blank=True, null=True)
     owner_lessor = models.ForeignKey('LandLord', on_delete=models.CASCADE)
@@ -235,22 +242,23 @@ class Lease(models.Model):
     created_by_manager = models.ForeignKey('PropertyManager', on_delete=models.DO_NOTHING)
     premises = models.OneToOneField('Premise', on_delete=models.CASCADE, blank=True, null=True)
     property_unit = models.OneToOneField('PropertyUnit', on_delete=models.CASCADE, blank=True, null=True)
+    entire_property = models.BooleanField(default=False)
     lease_starts = models.DateField()
     occupation_date = models.DateField()
     lease_ends = models.DateField(blank=True, null=True)
     lease_indefinite_thereafter = models.BooleanField(default=False)
     rent_review_date = models.DateField()
     annual_rent_review_date = models.DateField()
-    rent_review_notes = models.TextField()
+    rent_review_notes = models.TextField(blank=True, null=True)
     monthly_rent_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     monthly_rate = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     escalation_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     recovery_percentage = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     monthly_recovery_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
-    recovery_notes = models.TextField()
+    recovery_notes = models.TextField(blank=True, null=True)
     cash_deposit_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     bank_guarantee_amount = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
-    deposit_notes = models.TextField()
+    deposit_notes = models.TextField(blank=True, null=True)
     lease_documentation_fee = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     late_payment_interest_percentage = models.DecimalField(max_digits=15, decimal_places=2, default=0.00)
     is_active = models.BooleanField(default=True)
@@ -260,5 +268,13 @@ class Lease(models.Model):
     def __str__(self):
         return self.tenant_lessee.tenant_name
 
+    def get_absolute_url(self):
+        return reverse_lazy('manager:tenant_lease_detail',
+                            kwargs={'pk': self.pk, 'prop': self.tenant_lessee.property.pk, 'ten': self.tenant_lessee.pk})
 
+
+@receiver(post_save, sender=Lease)
+def lease_created_callback(sender, instance, created, *args, **kwargs):
+    if created:
+        Tenant.objects.filter(id=instance.tenant_lessee.id).update(lease=instance)
 

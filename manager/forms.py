@@ -1,7 +1,7 @@
 from django import forms
 from geopy.exc import GeocoderServiceError
 from geopy.geocoders import Nominatim, ArcGIS
-from manager.models import LandLord, Property, PropertyManager, PropertyUnit, Premise, Tenant
+from manager.models import LandLord, Property, PropertyManager, PropertyUnit, Premise, Tenant, Lease
 from django.utils.translation import ugettext_lazy as _
 
 text_input_style = 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'
@@ -169,9 +169,55 @@ class PremiseForm(forms.ModelForm):
 class TenantForm(forms.ModelForm):
     class Meta:
         model = Tenant
-        exclude = ['property', 'date_created', 'last_updated', 'is_active']
+        exclude = ['property', 'date_created', 'last_updated', 'is_active', 'lease']
         labels = {
-            'tenant_name': _('Tenant Name'),
+            'tenant_name': _('Tenant Name*'),
+            'trading_as_list_name': _('Trading As / List Name*'),
+            'identification_type': _('Identification Type*'),
+            'identification': _('Identification Number*'),
+            'email_1': _('Email*'),
+            'email_2': _('Alternate Email'),
+            'phone_1': _('Phone*'),
+            'phone_2': _('Alternate Phone'),
+            'postal_address': _('Postal Address*'),
+            'domicile_address': _('Domicile Address'),
+            'nationality': _('Nationality*'),
+            'details': _('Extra Details'),
+        }
+        widgets = {
+            'tenant_name': forms.TextInput(attrs={'class': text_input_style}),
+            'trading_as_list_name': forms.TextInput(attrs={'class': text_input_style}),
+            'identification': forms.TextInput(attrs={'class': text_input_style}),
+            'email_1': forms.TextInput(attrs={'class': text_input_style, 'placeholder': _('your@email.com')}),
+            'email_2': forms.TextInput(attrs={'class': text_input_style, 'placeholder': _('your@alt_email.com')}),
+            'phone_1': forms.TextInput(attrs={'class': text_input_style}),
+            'phone_2': forms.TextInput(attrs={'class': text_input_style}),
+            'postal_address': forms.Textarea(attrs={'class': text_area_style}),
+            'domicile_address': forms.Textarea(attrs={'class': text_area_style}),
+            'details': forms.Textarea(attrs={'class': text_area_style}),
+        }
+
+
+class LeaseForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        property_id = kwargs.pop('property')
+        super(LeaseForm, self).__init__(*args, **kwargs)
+        self.fields['premises'].queryset = Premise.objects.filter(property_id=property_id)
+        self.fields['property_unit'].queryset = PropertyUnit.objects.filter(property_id=property_id)
+
+    class Meta:
+        model = Lease
+        exclude = ['tenant_lessee', 'owner_lessor', 'organization_managing', 'created_by_manager',
+                   'is_active', 'date_created', 'last_updated']
+
+        widgets = {
+            'lease_starts': forms.SelectDateWidget(years=range(2019, 2100)),
+            'occupation_date': forms.SelectDateWidget(years=range(2019, 2100)),
+            'lease_ends': forms.SelectDateWidget(years=range(1900, 2019)),
+            'rent_review_date': forms.SelectDateWidget(years=range(2019, 2100)),
+            'annual_rent_review_date': forms.SelectDateWidget(years=range(2019, 2100)),
+
         }
 
 

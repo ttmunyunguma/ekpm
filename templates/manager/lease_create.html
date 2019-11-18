@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    eKPM Portal | Lease
+{% endblock %}
+
+{% block content %}
+
+    <div class="ui-g ui-fluid">
+        <div class="ui-g-12">
+            <div class="card card-w-title">
+                <h1>Lease for property: {{ property }}, between Owner: {{ owner }}, and Tenant: {{ tenant }}</h1>
+                <div class="ui-g ui-fluid">
+                    <div>
+                        <form method="POST" action="{% url 'manager:tenants_lease_new' prop=prop ten=ten %}" class="ui-g-12">
+                            {% include 'base_form.html' with form=form %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

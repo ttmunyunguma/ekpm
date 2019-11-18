@@ -5,8 +5,8 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 
-from manager.forms import LandLordForm, PropertyForm, PropertyUnitForm, PremiseForm, TenantForm
-from manager.models import LandLord, PropertyManager, Property, PropertyUnit, Premise, Tenant
+from manager.forms import LandLordForm, PropertyForm, PropertyUnitForm, PremiseForm, TenantForm, LeaseForm
+from manager.models import LandLord, PropertyManager, Property, PropertyUnit, Premise, Tenant, Lease
 
 
 class LoginRequiredMixin(object):
@@ -98,16 +98,13 @@ class PropertyListView(LoginRequiredMixin, ListView):
             is_active=True
         )
         paginator = Paginator(properties, self.paginate_by)
-
         page = self.request.GET.get('page')
-
         try:
             pages = paginator.page(page)
         except PageNotAnInteger:
             pages = paginator.page(1)
         except EmptyPage:
             pages = paginator.page(paginator.num_pages)
-
         context['properties'] = pages
         return context
 
@@ -273,7 +270,58 @@ class TenantCreateView(LoginRequiredMixin, CreateView):
         return super(TenantCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
-        print(self.request.session)
         context = super(TenantCreateView, self).get_context_data(**kwargs)
         context['prop'] = self.request.session.get('prop')
         return context
+
+
+class TenantDetailView(LoginRequiredMixin, DetailView):
+    model = Tenant
+    context_object_name = 'tenant'
+    template_name = 'manager/tenant_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TenantDetailView, self).get_context_data(**kwargs)
+        context['prop'] = self.request.session.get('prop')
+        return context
+
+
+class LeaseCreateView(LoginRequiredMixin, CreateView):
+    form_class = LeaseForm
+    template_name = 'manager/lease_create.html'
+
+    def get_form_kwargs(self):
+        kwargs = super(LeaseCreateView, self).get_form_kwargs()
+        kwargs.update({'property': self.request.session.get('prop')})
+        return kwargs
+
+    def form_valid(self, form, **kwargs):
+        form.instance.tenant_lessee = Tenant.objects.get(id=self.kwargs.get('ten'))
+        form.instance.owner_lessor = Property.objects.get(id=self.request.session.get('prop')).land_lord
+        form.instance.organization_managing = PropertyManager.objects.get(user=self.request.user).organisation
+        form.instance.created_by_manager = PropertyManager.objects.get(user=self.request.user)
+        return super(LeaseCreateView, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LeaseCreateView, self).get_context_data(**kwargs)
+        context['prop'] = self.request.session.get('prop')
+        context['ten'] = self.kwargs.get('ten')
+        context['owner'] = Property.objects.get(id=self.request.session.get('prop')).land_lord
+        context['property'] = Property.objects.get(id=self.request.session.get('prop'))
+        context['tenant'] = Tenant.objects.get(id=self.kwargs.get('ten'))
+        self.request.session['ten'] = self.kwargs.get('ten')
+
+        return context
+
+
+class LeaseDetailView(LoginRequiredMixin, DetailView):
+    model = Lease
+    context_object_name = 'lease'
+    template_name = 'manager/lease_detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(LeaseDetailView, self).get_context_data(**kwargs)
+        context['prop'] = self.request.session.get('prop')
+        context['ten'] = self.request.session.get('ten')
+        return context
+

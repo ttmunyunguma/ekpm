@@ -9,7 +9,7 @@
     <div class="ui-g">
         <div class="ui-g-12">
             <div class="card">
-                <h1>Lease for : {{ lease.tenant }}</h1>
+                <h1>Lease for : {{ lease.tenant_lessee }}</h1>
                 <table id="form:j_idt112:0:j_idt113"
                        class="ui-panelgrid ui-widget ui-panelgrid-blank" style="width:100%"
                        role="grid">
@@ -25,87 +25,177 @@
                     </thead>
                     <tbody>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Property:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Tenant / Lessee:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700">{{ tenant.property }}</span>
+                            <span style="font-weight:700">{{ lease.tenant_lessee }}</span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Tenant Name:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Tenant Represetative:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.tenant_name }} </span>
+                            <span style="font-weight:700"> {{ lease.tenant_representative }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Trading As / List Name:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Tenant Represetative Capacity:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.trading_as_list_name }} </span>
+                            <span style="font-weight:700"> {{ lease.tenant_representative_capacity }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Identification Type:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Owner / Lessor:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.identification_type }} </span>
+                            <span style="font-weight:700"> {{ lease.owner_lessor }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Identification Number:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Owner Represetative:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.identification }} </span>
+                            <span style="font-weight:700"> {{ lease.owner_representative }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Email:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Owner Represetative Capacity:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.email_1 }} </span>
+                            <span style="font-weight:700"> {{ lease.owner_representative_capacity }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Alternate Email:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Lease created by:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.email_2 }} </span>
+                            <span style="font-weight:700"> {{ lease.created_by_manager }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Phone:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Premises:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.phone_1 }} </span>
+                            <span style="font-weight:700"> {{ lease.premises }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Alternate Phone:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Property Unit:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.phone_2 }} </span>
+                            <span style="font-weight:700"> {{ lease.property_unit }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Postal Address:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Is the lease covering the whole property</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.postal_address }} </span>
+                            <span style="font-weight:700"> {{ lease.entire_property }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Domicile Address:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Lease Starts Date:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.domicile_address }} </span>
+                            <span style="font-weight:700"> {{ lease.lease_starts }} </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Nationality:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">Occupation Dates:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.nationality }} </span>
+                            <span style="font-weight:700"> {{ lease.occupation_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Lease Ends Date:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.lease_ends }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Indefinite After Start?:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.lease_indefinite_thereafter }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Rent Review Date:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.rent_review_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Annual Rent Review Date:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.annual_rent_review_date }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Rent Review Extra Notes:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.rent_review_notes }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Monthly Rent Amount:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ lease.monthly_rent_amount }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Monthly Rate:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ lease.monthly_rate }} / (sqmtr) </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Escalation:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.escalation_percentage }}% </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Recovery:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.recovery_percentage }}% </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Monthly Recovery Amount:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ lease.monthly_recovery_amount }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Recoveries Extra Notes:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.recovery_notes }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Required Cash Deposit:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ lease.cash_deposit_amount }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Bank Guarantee:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ lease.bank_guarantee_amount }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Deposit Extra Notes:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.deposit_notes }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Lease Documentation Fee:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> ${{ lease.lease_documentation_fee }} </span>
+                        </td>
+                    </tr>
+                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
+                        <td role="gridcell" class="ui-panelgrid-cell">Late Payment Interest:</td>
+                        <td role="gridcell" class="ui-panelgrid-cell">
+                            <span style="font-weight:700"> {{ lease.late_payment_interest_percentage }}% </span>
                         </td>
                     </tr>
                     <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
                         <td role="gridcell" class="ui-panelgrid-cell">Date Created:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.date_created }} </span>
-                        </td>
-                    </tr>
-                    <tr class="ui-widget-content" role="row" style="border: 1px solid #3e4da1;">
-                        <td role="gridcell" class="ui-panelgrid-cell">Extra Details:</td>
-                        <td role="gridcell" class="ui-panelgrid-cell">
-                            <span style="font-weight:700"> {{ tenant.details }} </span>
+                            <span style="font-weight:700"> {{ lease.date_created }} </span>
                         </td>
                     </tr>
                     </tbody>

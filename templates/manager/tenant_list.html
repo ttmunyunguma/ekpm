@@ -41,7 +41,7 @@
                             class="ui-icon ui-icon-seek-end">E</span></a></div>
 
                     <div class="ui-datatable-tablewrapper">
-                        <table role="grid">
+                        <table role="grid" id="table">
                             <thead id="form:j_idt47_head">
                             <tr role="row">
                                 <th id="form:j_idt47:j_idt49" class="ui-state-default ui-sortable-column"
@@ -61,7 +61,7 @@
                                 </th>
                                 <th id="form:j_idt47:j_idt55" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Color" scope="col">
-                                    <span class="ui-column-title">Actions</span>
+                                    <span class="ui-column-title">Nationality</span>
                                 </th>
                             </tr>
                             </thead>
@@ -75,13 +75,12 @@
                                     <td role="gridcell">{{ tenant.tenant_name }}</td>
                                     <td role="gridcell">{{ tenant.trading_as_list_name }}</td>
                                     <td role="gridcell">
-                                        <a class="btn btn-block"
+                                        {{ tenant.nationality }}
+                                        <a class="hidden"
                                            href="{{ tenant.get_absolute_url }}">
-                                            <span title="View Details" class="fa fa-eye"></span>
                                         </a>
                                     </td>
                                 </tr>
-                                <input type="hidden" id="Url" data-url="#"/>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -128,6 +127,16 @@
                         groupColumnIndexes: []
                     });
                 });</script>
+                <script>
+                    $(document).ready(function () {
+                        $('#table tr').dblclick(function () {
+                            var href = $(this).find("a").attr("href");
+                            if (href) {
+                                window.location = href;
+                            }
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>

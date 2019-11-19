@@ -106,7 +106,9 @@
                         <td role="gridcell" class="ui-panelgrid-cell">Lease:</td>
                         <td role="gridcell" class="ui-panelgrid-cell">
                             {% if tenant.lease %}
-                                <span style="font-weight:700"> {{ tenant.lease }} </span>
+                                <a id="j_idt182" href="{{ tenant.lease.get_absolute_url }}"
+                                   class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn">
+                                    <span class="ui-button-text ui-c">View Lease</span></a>
                             {% else %}
                                 <a id="j_idt182" href="{% url 'manager:tenants_lease_new' prop=prop ten=tenant.id %}"
                                    class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn">

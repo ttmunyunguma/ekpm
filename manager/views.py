@@ -43,16 +43,13 @@ class LandLordListView(LoginRequiredMixin, ListView):
             is_active=True
         )
         paginator = Paginator(landlords, self.paginate_by)
-
         page = self.request.GET.get('page')
-
         try:
             pages = paginator.page(page)
         except PageNotAnInteger:
             pages = paginator.page(1)
         except EmptyPage:
             pages = paginator.page(paginator.num_pages)
-
         context['landlords'] = pages
         return context
 
@@ -137,7 +134,6 @@ class PropertyUnitListView(LoginRequiredMixin, ListView):
             property_id=self.kwargs.get('prop'),
             is_active=True
         ).order_by('id')
-        self.request.session['prop'] = self.kwargs.get('prop')
         return query
 
     def get_context_data(self, **kwargs):
@@ -157,7 +153,7 @@ class PropertyUnitCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(PropertyUnitCreateView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -168,7 +164,7 @@ class PropertyUnitDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PropertyUnitDetailView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -179,7 +175,7 @@ class PropertyUnitUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(PropertyUnitUpdateView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -194,7 +190,6 @@ class PropertyPremiseListView(LoginRequiredMixin, ListView):
             property_id=self.kwargs.get('prop'),
             is_active=True
         ).order_by('id')
-        self.request.session['prop'] = self.kwargs.get('prop')
         return query
 
     def get_context_data(self, **kwargs):
@@ -214,7 +209,7 @@ class PropertyPremiseCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(PropertyPremiseCreateView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -225,7 +220,7 @@ class PropertyPremiseDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PropertyPremiseDetailView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -236,7 +231,7 @@ class PropertyPremiseUpdateView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(PropertyPremiseUpdateView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -251,7 +246,6 @@ class TenantListView(LoginRequiredMixin, ListView):
             property_id=self.kwargs.get('prop'),
             is_active=True
         ).order_by('id')
-        self.request.session['prop'] = self.kwargs.get('prop')
         return query
 
     def get_context_data(self, **kwargs):
@@ -259,6 +253,23 @@ class TenantListView(LoginRequiredMixin, ListView):
         context['prop'] = self.kwargs.get('prop')
         context['property'] = Property.objects.get(id=self.kwargs.get('prop'))
         return context
+
+
+class AllTenantsListView(LoginRequiredMixin, ListView):
+    model = Tenant
+    paginate_by = 10
+    template_name = 'manager/tenant_list_all.html'
+    context_object_name = 'tenants'
+
+    def get_queryset(self, *args, **kwargs):
+        query = super(AllTenantsListView, self).get_queryset().filter(
+            property__in=Property.objects.filter(
+                organisation_managing=PropertyManager.objects.get(
+                    user=self.request.user).organisation
+            ),
+            is_active=True
+        ).order_by('id')
+        return query
 
 
 class TenantCreateView(LoginRequiredMixin, CreateView):
@@ -271,7 +282,7 @@ class TenantCreateView(LoginRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super(TenantCreateView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -282,7 +293,7 @@ class TenantDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TenantDetailView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         return context
 
 
@@ -290,26 +301,25 @@ class LeaseCreateView(LoginRequiredMixin, CreateView):
     form_class = LeaseForm
     template_name = 'manager/lease_create.html'
 
-    def get_form_kwargs(self):
+    def get_form_kwargs(self, *args, **kwargs):
         kwargs = super(LeaseCreateView, self).get_form_kwargs()
-        kwargs.update({'property': self.request.session.get('prop')})
+        kwargs.update({'property': self.kwargs.get('prop')})
         return kwargs
 
     def form_valid(self, form, **kwargs):
         form.instance.tenant_lessee = Tenant.objects.get(id=self.kwargs.get('ten'))
-        form.instance.owner_lessor = Property.objects.get(id=self.request.session.get('prop')).land_lord
+        form.instance.owner_lessor = Property.objects.get(id=self.kwargs.get('prop')).land_lord
         form.instance.organization_managing = PropertyManager.objects.get(user=self.request.user).organisation
         form.instance.created_by_manager = PropertyManager.objects.get(user=self.request.user)
         return super(LeaseCreateView, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         context = super(LeaseCreateView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
+        context['prop'] = self.kwargs.get('prop')
         context['ten'] = self.kwargs.get('ten')
-        context['owner'] = Property.objects.get(id=self.request.session.get('prop')).land_lord
-        context['property'] = Property.objects.get(id=self.request.session.get('prop'))
+        context['owner'] = Property.objects.get(id=self.kwargs.get('prop')).land_lord
+        context['property'] = Property.objects.get(id=self.kwargs.get('prop'))
         context['tenant'] = Tenant.objects.get(id=self.kwargs.get('ten'))
-        self.request.session['ten'] = self.kwargs.get('ten')
 
         return context
 
@@ -321,7 +331,6 @@ class LeaseDetailView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(LeaseDetailView, self).get_context_data(**kwargs)
-        context['prop'] = self.request.session.get('prop')
-        context['ten'] = self.request.session.get('ten')
+        context['prop'] = self.kwargs.get('prop')
+        context['ten'] = self.kwargs.get('ten')
         return context
-

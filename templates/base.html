@@ -212,18 +212,19 @@
                     </li>
                     <li id="menuform:apl_dark" role="menuitem"><a href="#"><i class="fa fa-circle fa-fw"></i><span>Processes</span><i
                             class="layout-menuitem-toggler fa fa-fw fa-angle-down"></i><span
-                            class="menuitem-badge">2</span></a>
+                            class="menuitem-badge">3</span></a>
                         <div class="layout-menu-tooltip">
                             <div class="layout-menu-tooltip-arrow"></div>
                             <div class="layout-menu-tooltip-text">Processes</div>
                         </div>
                         <ul role="menu">
                             <li id="menuform:apl_lnk111" role="menuitem">
-                                <a href="{% url 'manager:landlords' %}"><i
-                                        class="fa fa-user fa-fw"></i><span>LandLords</span></a>
+                                <a href="{% url 'manager:landlords' %}">
+                                    <i class="fa fa-user fa-fw"></i><span>LandLords</span></a>
                             </li>
                             <li id="menuform:apl_lnk111" role="menuitem">
-                                <a href="#"><i class="fa fa-user fa-fw"></i><span>Tenants</span></a>
+                                <a href="{% url 'manager:tenants' %}">
+                                    <i class="fa fa-user fa-fw"></i><span>Tenants</span></a>
                             </li>
                             <li id="menuform:apl_lnk111" role="menuitem">
                                 <a href="{% url 'manager:properties' %}"><i class="fa fa-home fa-fw"></i><span>Properties</span></a>

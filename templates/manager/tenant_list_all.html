@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block title %}
-    eKPM Portal | Premises
+    eKPM Portal | Tenants
 {% endblock %}
 
 {% block content %}
@@ -9,15 +9,10 @@
     <div class="ui-g">
         <div class="ui-g-12">
             <div class="card no-margin">
-                <h1>Premises for: {{ property.title }}</h1>
+                <h1>Tenants</h1>
                 <div id="form:j_idt47" class="ui-datatable ui-widget ui-datatable-reflow">
                     <div class="ui-datatable-header ui-widget-header ui-corner-top">
-                        Premises
-                        <span style="padding-left: 10px">
-                            <a id="j_idt182" href="{% url 'manager:property_premises_new' prop=prop %}"
-                               class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only purple-btn">
-                                <span class="ui-button-text ui-c">Add New</span></a>
-                        </span>
+                        Tenants in properties under you management
                     </div>
                     <div id="form:j_idt47_paginator_top" class="ui-paginator ui-paginator-top ui-widget-header"
                          role="navigation" aria-label="Pagination">
@@ -51,34 +46,33 @@
                                 </th>
                                 <th id="form:j_idt47:j_idt51" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Year" scope="col">
-                                    <span class="ui-column-title">Premise Title</span>
+                                    <span class="ui-column-title">Tenant Name</span>
                                     <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
                                 </th>
                                 <th id="form:j_idt47:j_idt53" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Brand" scope="col">
-                                    <span class="ui-column-title">Is Vacant?</span>
+                                    <span class="ui-column-title">Trading As / List Name</span>
                                     <span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span>
                                 </th>
                                 <th id="form:j_idt47:j_idt55" class="ui-state-default ui-sortable-column"
                                     role="columnheader" aria-label="Color" scope="col">
-                                    <span class="ui-column-title">Accommodation Type</span>
+                                    <span class="ui-column-title">Nationality</span>
                                 </th>
                             </tr>
                             </thead>
 
                             <tbody id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
-                            {% for premise in premises %}
-
+                            {% for tenant in tenants %}
                                 <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
                                     role="row" onclick=""
                                     aria-selected="false">
-                                    <td role="gridcell">{{ premise.property }}</td>
-                                    <td role="gridcell">{{ premise.premise_title }}</td>
-                                    <td role="gridcell">{{ premise.is_vacant }}</td>
+                                    <td role="gridcell">{{ tenant.property }}</td>
+                                    <td role="gridcell">{{ tenant.tenant_name }}</td>
+                                    <td role="gridcell">{{ tenant.trading_as_list_name }}</td>
                                     <td role="gridcell">
-                                        {{ premise.accommodation_type }}
+                                        {{ tenant.nationality }}
                                         <a class="hidden"
-                                           href="{{ premise.get_absolute_url }}">
+                                           href="{{ tenant.get_absolute_url }}">
                                         </a>
                                     </td>
                                 </tr>

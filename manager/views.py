@@ -305,6 +305,17 @@ class TenantDetailView(LoginRequiredMixin, DetailView):
         return context
 
 
+class TenantUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = TenantForm
+    template_name = 'manager/tenant_create.html'
+    model = Tenant
+
+    def get_context_data(self, **kwargs):
+        context = super(TenantUpdateView, self).get_context_data(**kwargs)
+        context['prop'] = self.kwargs.get('prop')
+        return context
+
+
 class LeaseCreateView(LoginRequiredMixin, CreateView):
     form_class = LeaseForm
     template_name = 'manager/lease_create.html'
@@ -341,4 +352,24 @@ class LeaseDetailView(LoginRequiredMixin, DetailView):
         context = super(LeaseDetailView, self).get_context_data(**kwargs)
         context['prop'] = self.kwargs.get('prop')
         context['ten'] = self.kwargs.get('ten')
+        return context
+
+
+class LeaseUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = LeaseForm
+    template_name = 'manager/lease_create.html'
+    model = Lease
+
+    def get_form_kwargs(self, *args, **kwargs):
+        kwargs = super(LeaseUpdateView, self).get_form_kwargs()
+        kwargs.update({'property': self.kwargs.get('prop')})
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(LeaseUpdateView, self).get_context_data(**kwargs)
+        context['prop'] = self.kwargs.get('prop')
+        context['ten'] = self.kwargs.get('ten')
+        context['owner'] = Property.objects.get(id=self.kwargs.get('prop')).land_lord
+        context['property'] = Property.objects.get(id=self.kwargs.get('prop'))
+        context['tenant'] = Tenant.objects.get(id=self.kwargs.get('ten'))
         return context

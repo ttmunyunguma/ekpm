@@ -18,6 +18,14 @@ class LoginRequiredMixin(object):
 class PortalHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'manager/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(PortalHomeView, self).get_context_data(**kwargs)
+        context['tenants_count'] = Tenant.objects.all().count()
+        context['portfolios'] = LandLord.objects.all().count()
+        context['managers'] = PropertyManager.objects.filter(
+            organisation=PropertyManager.objects.get(user=self.request.user).organisation).count()
+        return context
+
 
 class LandLordCreateView(LoginRequiredMixin, CreateView):
     form_class = LandLordForm

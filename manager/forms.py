@@ -6,35 +6,25 @@ from django.utils.translation import ugettext_lazy as _
 
 text_input_style = 'ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all'
 text_area_style = 'ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all'
+select_one_menu_style = 'ui-selectonemenu ui-widget ui-state-default ui-corner-all'
 
 
 class LandLordForm(forms.ModelForm):
-    name = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    phone = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    address = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    city = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    identification = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    bank = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    bank_branch = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    bank_account_number = forms.CharField(
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    details = forms.CharField(
-        widget=forms.Textarea(
-            attrs={'class': text_area_style}), required=False)
-    representative = forms.CharField(
-        widget=forms.TextInput(
-            attrs={'class': text_input_style}), required=False)
-
     class Meta:
         model = LandLord
         exclude = ['managed_by', 'date_created', 'last_updated', 'is_active']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': text_input_style}),
+            'phone': forms.TextInput(attrs={'class': text_input_style}),
+            'address': forms.TextInput(attrs={'class': text_input_style}),
+            'city': forms.TextInput(attrs={'class': text_input_style}),
+            'identification': forms.TextInput(attrs={'class': text_input_style}),
+            'bank': forms.TextInput(attrs={'class': text_input_style}),
+            'bank_branch': forms.TextInput(attrs={'class': text_input_style}),
+            'bank_account_number': forms.TextInput(attrs={'class': text_input_style}),
+            'details': forms.Textarea(attrs={'class': text_area_style}),
+            'representative': forms.TextInput(attrs={'class': text_input_style}),
+        }
 
 
 class PropertyForm(forms.ModelForm):
@@ -48,67 +38,38 @@ class PropertyForm(forms.ModelForm):
             ).organisation
         )
 
-    land_lord = forms.ModelChoiceField(label='Land Lord*', queryset=None, widget=forms.Select(
-        attrs={'class': 'ui-selectonemenu ui-widget ui-state-default ui-corner-all'}), required=True)
-    first_erected_date = forms.DateField(label='First Erected Date',
-                                         widget=forms.SelectDateWidget(years=range(1900, 2100)), required=False)
-    property_acquired_date = forms.DateField(label='Property Acquired Date',
-                                             widget=forms.SelectDateWidget(years=range(1900, 2100)), required=False)
-    management_started_date = forms.DateField(label='Management Started Date',
-                                              widget=forms.SelectDateWidget(years=range(1900, 2100)), required=False)
-    management_stopped_date = forms.DateField(label='Management Stopped Date',
-                                              widget=forms.SelectDateWidget(years=range(1900, 2100)), required=False)
-    property_disposed_date = forms.DateField(label='Property Disposed Date',
-                                             widget=forms.SelectDateWidget(years=range(1900, 2100)), required=False)
-    title = forms.CharField(
-        label='Property Title*', widget=forms.TextInput(
-            attrs={'class': text_input_style}))
-    property_value = forms.DecimalField(
-        max_digits=15, decimal_places=2, initial=0.00, label='Property Value($)',
-        widget=forms.NumberInput(
-            attrs={'class': text_input_style, }))
-    address = forms.CharField(
-        label='Address*',
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    city = forms.CharField(
-        label='City*',
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    description = forms.CharField(
-        label='Property Description',
-        widget=forms.Textarea(
-            attrs={'class': text_area_style}))
-    lot_size = forms.DecimalField(
-        label='Lot Size(sqmts)',
-        max_digits=15, decimal_places=3, initial=0.000,
-        widget=forms.NumberInput(
-            attrs={'class': text_input_style, }))
-    building_size = forms.DecimalField(
-        label='Building Size(sqmts)',
-        max_digits=15, decimal_places=3, initial=0.000,
-        widget=forms.NumberInput(
-            attrs={'class': text_input_style, }))
-    acquisition_cost = forms.DecimalField(
-        label='Acquisition Cost($)',
-        max_digits=15, decimal_places=2, initial=0.00,
-        widget=forms.NumberInput(
-            attrs={'class': text_input_style, }))
-    selling_price = forms.DecimalField(
-        label='Selling Price($)',
-        max_digits=15, decimal_places=2, initial=0.00,
-        widget=forms.NumberInput(attrs={
-            'class': text_input_style}))
-    zone = forms.CharField(
-        label='Property Zone',
-        widget=forms.TextInput(attrs={'class': text_input_style}),
-        required=False)
-    details = forms.CharField(
-        label='Extra Details',
-        widget=forms.Textarea(
-            attrs={'class': text_area_style}), required=False)
-
     class Meta:
         model = Property
         exclude = ['organisation_managing', 'geographic_location', 'date_created', 'last_updated', 'is_active']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': text_input_style}),
+            'land_lord': forms.Select(attrs={'class': select_one_menu_style}),
+            'first_erected_date': forms.SelectDateWidget(years=range(1900, 2100)),
+            'property_acquired_date': forms.SelectDateWidget(years=range(1900, 2100)),
+            'management_started_date': forms.SelectDateWidget(years=range(1900, 2100)),
+            'management_stopped_date': forms.SelectDateWidget(years=range(1900, 2100)),
+            'property_disposed_date': forms.SelectDateWidget(years=range(1900, 2100)),
+            'property_value': forms.NumberInput(attrs={'class': text_input_style}),
+            'address': forms.TextInput(attrs={'class': text_input_style}),
+            'city': forms.TextInput(attrs={'class': text_input_style}),
+            'description': forms.Textarea(attrs={'class': text_area_style}),
+            'lot_size': forms.NumberInput(attrs={'class': text_input_style}),
+            'building_size': forms.NumberInput(attrs={'class': text_input_style}),
+            'acquisition_cost': forms.NumberInput(attrs={'class': text_input_style}),
+            'selling_price': forms.NumberInput(attrs={'class': text_input_style}),
+            'zone': forms.TextInput(attrs={'class': text_input_style}),
+            'details': forms.Textarea(attrs={'class': text_area_style}),
+        }
+        labels = {
+            'property_value': _('Property Value ($)'),
+            'description': _('Property Description'),
+            'lot_size': _('Lot Size (sqmts)'),
+            'building_size': _('Building Size (sqmts)'),
+            'acquisition_cost': _('Acquisition Cost($)'),
+            'selling_price': _('Selling Price ($)'),
+            'zone': _('Property Zone'),
+            'details': _('Extra Details'),
+        }
 
     def save(self, commit=True):
         property_obj = super(PropertyForm, self).save(commit=False)
@@ -129,41 +90,31 @@ class PropertyForm(forms.ModelForm):
 
 
 class PropertyUnitForm(forms.ModelForm):
-    unit_title = forms.CharField(
-        label='Unit Title*',
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    total_area = forms.DecimalField(
-        label='Total Area(sqmts)*',
-        max_digits=15, decimal_places=3, initial=0.000,
-        widget=forms.NumberInput(
-            attrs={'class': text_input_style}))
-    details = forms.CharField(
-        label='Unit Details',
-        widget=forms.Textarea(
-            attrs={'class': text_area_style}), required=False)
-
     class Meta:
         model = PropertyUnit
         exclude = ['property', 'date_created', 'last_updated', 'is_active']
+        widgets = {
+            'unit_title': forms.TextInput(attrs={'class': text_input_style}),
+            'total_area': forms.NumberInput(attrs={'class': text_input_style}),
+            'details': forms.Textarea(attrs={'class': text_area_style}),
+        }
+        labels = {
+            'total_area': _('Total Area (sqmts)*'),
+        }
 
 
 class PremiseForm(forms.ModelForm):
-    premise_title = forms.CharField(
-        label='Premise Title*',
-        widget=forms.TextInput(attrs={'class': text_input_style}))
-    total_area = forms.DecimalField(
-        label='Total Area(sqmts)*',
-        max_digits=15, decimal_places=3, initial=0.000,
-        widget=forms.NumberInput(
-            attrs={'class': text_input_style}))
-    details = forms.CharField(
-        label='Unit Details',
-        widget=forms.Textarea(
-            attrs={'class': text_area_style}), required=False)
-
     class Meta:
         model = Premise
         exclude = ['property', 'date_created', 'last_updated', 'is_active']
+        labels = {
+            'total_area': _('Total Area (sqmts)'),
+        }
+        widgets = {
+            'premise_title': forms.TextInput(attrs={'class': text_input_style}),
+            'total_area': forms.NumberInput(attrs={'class': text_input_style}),
+            'details': forms.Textarea(attrs={'class': text_area_style})
+        }
 
 
 class TenantForm(forms.ModelForm):
@@ -210,15 +161,38 @@ class LeaseForm(forms.ModelForm):
         model = Lease
         exclude = ['tenant_lessee', 'owner_lessor', 'organization_managing', 'created_by_manager',
                    'is_active', 'date_created', 'last_updated']
-
         widgets = {
             'lease_starts': forms.SelectDateWidget(years=range(2019, 2100)),
             'occupation_date': forms.SelectDateWidget(years=range(2019, 2100)),
             'lease_ends': forms.SelectDateWidget(years=range(1900, 2019)),
             'rent_review_date': forms.SelectDateWidget(years=range(2019, 2100)),
             'annual_rent_review_date': forms.SelectDateWidget(years=range(2019, 2100)),
+            'tenant_representative': forms.TextInput(attrs={'class': text_input_style}),
+            'tenant_representative_capacity': forms.TextInput(attrs={'class': text_input_style}),
+            'owner_representative': forms.TextInput(attrs={'class': text_input_style}),
+            'owner_representative_capacity': forms.TextInput(attrs={'class': text_input_style}),
+            'rent_review_notes': forms.Textarea(attrs={'class': text_area_style}),
+            'monthly_rent_amount': forms.NumberInput(attrs={'class': text_input_style}),
+            'monthly_rate': forms.NumberInput(attrs={'class': text_input_style}),
+            'escalation_percentage': forms.NumberInput(attrs={'class': text_input_style}),
+            'recovery_percentage': forms.NumberInput(attrs={'class': text_input_style}),
+            'monthly_recovery_amount': forms.NumberInput(attrs={'class': text_input_style}),
+            'recovery_notes': forms.Textarea(attrs={'class': text_area_style}),
+            'cash_deposit_amount': forms.NumberInput(attrs={'class': text_input_style}),
+            'bank_guarantee_amount': forms.NumberInput(attrs={'class': text_input_style}),
+            'deposit_notes': forms.Textarea(attrs={'class': text_area_style}),
+            'lease_documentation_fee': forms.NumberInput(attrs={'class': text_input_style}),
+            'late_payment_interest_percentage': forms.NumberInput(attrs={'class': text_input_style}),
+        }
+        labels = {
+            'monthly_rent_amount': _('Monthly Rent Amount ($)'),
+            'monthly_rate': _('Monthly Rate (%)'),
+            'escalation_percentage': _('Escalation (%)'),
+            'recovery_percentage': _('Recoveries (%)'),
+            'monthly_recovery_amount': _('Monthly Recovery Amount ($)'),
+            'cash_deposit_amount': _('Cash Deposit Amount ($)'),
+            'bank_guarantee_amount': _('Bank Guarantee Amount ($)'),
+            'lease_documentation_fee': _('Lease Documentation Fee ($)'),
+            'late_payment_interest_percentage': _('Late Payment Interest (%)'),
 
         }
-
-
-

@@ -67,22 +67,25 @@
                             </thead>
 
                             <tbody id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
-                            {% for property in properties %}
-
-                                <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
-                                    role="row" onclick=""
-                                    aria-selected="false">
-                                    <td role="gridcell">{{ property.title }}</td>
-                                    <td role="gridcell">{{ property.property_type }}</td>
-                                    <td role="gridcell">{{ property.city }}</td>
-                                    <td role="gridcell">
-                                        {{ property.land_lord }}
-                                        <a class="hidden"
-                                           href="{{ property.get_absolute_url }}">
-                                        </a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                            {% if not properties.count == 0 %}
+                                {% for property in properties %}
+                                    <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
+                                        role="row" onclick=""
+                                        aria-selected="false">
+                                        <td role="gridcell">{{ property.title }}</td>
+                                        <td role="gridcell">{{ property.property_type }}</td>
+                                        <td role="gridcell">{{ property.city }}</td>
+                                        <td role="gridcell">
+                                            {{ property.land_lord }}
+                                            <a class="hidden"
+                                               href="{{ property.get_absolute_url }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <h1>No Data In Database</h1>
+                            {% endif %}
                             </tbody>
                         </table>
                     </div>

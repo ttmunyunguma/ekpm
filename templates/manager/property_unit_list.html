@@ -67,22 +67,26 @@
                             </thead>
 
                             <tbody id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
-                            {% for unit in units %}
+                            {% if not units.count == 0 %}
+                                {% for unit in units %}
+                                    <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
+                                        role="row" onclick=""
+                                        aria-selected="false">
+                                        <td role="gridcell">{{ unit.property }}</td>
+                                        <td role="gridcell">{{ unit.unit_title }}</td>
+                                        <td role="gridcell">{{ unit.is_vacant }}</td>
+                                        <td role="gridcell">
+                                            {{ unit.total_area }}
+                                            <a class="hidden"
+                                               href="{{ unit.get_absolute_url }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <h1>No Data In Database</h1>
+                            {% endif %}
 
-                                <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
-                                    role="row" onclick=""
-                                    aria-selected="false">
-                                    <td role="gridcell">{{ unit.property }}</td>
-                                    <td role="gridcell">{{ unit.unit_title }}</td>
-                                    <td role="gridcell">{{ unit.is_vacant }}</td>
-                                    <td role="gridcell">
-                                        {{ unit.total_area }}
-                                        <a class="hidden"
-                                           href="{{ unit.get_absolute_url }}">
-                                        </a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

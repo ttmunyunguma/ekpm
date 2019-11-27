@@ -66,23 +66,26 @@
                             </tr>
                             </thead>
 
-                            <tbody id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
-                            {% for premise in premises %}
-
-                                <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
-                                    role="row" onclick=""
-                                    aria-selected="false">
-                                    <td role="gridcell">{{ premise.property }}</td>
-                                    <td role="gridcell">{{ premise.premise_title }}</td>
-                                    <td role="gridcell">{{ premise.is_vacant }}</td>
-                                    <td role="gridcell">
-                                        {{ premise.accommodation_type }}
-                                        <a class="hidden"
-                                           href="{{ premise.get_absolute_url }}">
-                                        </a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
+                            <tr id="form:j_idt47_data" class="ui-datatable-data ui-widget-content" tabindex="0">
+                            {% if not premises.count == 0 %}
+                                {% for premise in premises %}
+                                    <tr class="ui-widget-content ui-datatable-odd ui-datatable-selectable ui-datatable-scrollable"
+                                        role="row" onclick=""
+                                        aria-selected="false">
+                                        <td role="gridcell">{{ premise.property }}</td>
+                                        <td role="gridcell">{{ premise.premise_title }}</td>
+                                        <td role="gridcell">{{ premise.is_vacant }}</td>
+                                        <td role="gridcell">
+                                            {{ premise.accommodation_type }}
+                                            <a class="hidden"
+                                               href="{{ premise.get_absolute_url }}">
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <h1>No Data In Database</h1>
+                            {% endif %}
                             </tbody>
                         </table>
                     </div>

@@ -69,3 +69,4 @@ fabric.properties
 
 db.sqlite3
 __pycache__
+migrations/

@@ -26,7 +26,10 @@ SECRET_KEY = '(w(ovk-hhubmb_n3f1%uki@_e&9hr2s@+3vu310mx%10y#a7j%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'ekpm.herokuapp.com',
+]
 
 
 # Application definition
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -130,6 +134,7 @@ STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = ''
 STATICFILES_DIRS = (os.path.join('static'), )
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 AUTH_USER_MODEL = 'manager.User'
@@ -138,7 +143,6 @@ LOGIN_REDIRECT_URL = 'manager:portal'
 LOGOUT_REDIRECT_URL = 'landing_page'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-# CRISPY_TEMPLATE_PACK = 'uni_form'
 
 
 # Platform Constants
